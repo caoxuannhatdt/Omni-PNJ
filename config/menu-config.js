@@ -20,9 +20,9 @@ export const workspaceMenu = [
             {
                 groupName: 'Monthly',
                 features: [
-                    { name: 'Tháng 01/2026', url: '/modules/clienteling/monthly/2026/01/tong-quan.html', status: 'active' },
-                    { name: 'Tháng 02/2026', url: '/modules/clienteling/monthly/2026/02/tong-quan.html', status: 'active' },
-                    { name: 'Tháng 03/2026', url: '/modules/clienteling/monthly/2026/03/tong-quan.html', status: 'active' }
+                    { name: 'Tháng 01/2026', url: '/clienteling/monthly/2026/01/tong-quan.html', status: 'active' },
+                    { name: 'Tháng 02/2026', url: '/clienteling/monthly/2026/02/tong-quan.html', status: 'active' },
+                    { name: 'Tháng 03/2026', url: '/clienteling/monthly/2026/03/tong-quan.html', status: 'active' }
                 ]
             },
             { groupName: 'Campaigns', features: [] }
