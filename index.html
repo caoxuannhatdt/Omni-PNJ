@@ -1,0 +1,2722 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omni-Growth: KHC Playbook 2026</title>
+    <link rel="icon" href="/Icon.png" type="image/png">
+    <meta property="og:title" content="Omni-Growth Workspace">
+    <meta property="og:description" content="Nền tảng báo cáo hiệu quả và phân tích dữ liệu Omni-Growth Team">
+    <meta property="og:image" content="https://omni-growth-2026.vercel.app/Logo.png">
+    <meta property="og:url" content="https://omni-growth-2026.vercel.app/">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* COLOR PALETTE */
+        :root {
+            --color-pnj-navy: #002d72;
+            --color-pnj-navy-light: #1e40af;
+            --color-pnj-gold: #d4af37;
+            --color-pnj-gold-vibrant: #facc15;
+            --color-bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-light);
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        .font-heading {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.025em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--color-pnj-navy), #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- ANIMATIONS & SHAPES --- */
+        .funnel-shape {
+            clip-path: polygon(0 0, 100% 0, 65% 100%, 35% 100%);
+        }
+
+        @keyframes drip {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(60px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes leak {
+            0% {
+                transform: translateY(0) scaleY(1);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(80px) scaleY(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateX(0) scaleY(1);
+            }
+
+            50% {
+                transform: translateX(-5px) scaleY(1.05);
+            }
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        .animate-drip {
+            animation: drip 1.5s infinite;
+        }
+
+        .animate-leak {
+            animation: leak 2s infinite;
+        }
+
+        .animate-wave {
+            animation: wave 4s ease-in-out infinite;
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+
+        .animate-pulse-border {
+            animation: pulse-border 2s infinite;
+        }
+
+        /* Tree Diagram Styles */
+        .tree-line-h {
+            position: relative;
+        }
+
+        .tree-line-h::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 50%;
+            width: 24px;
+            height: 2px;
+            background-color: #cbd5e1;
+        }
+
+        /* PAS Badges */
+        .badge-p {
+            @apply bg-red-100 text-red-800 border border-red-200;
+        }
+
+        .badge-a {
+            @apply bg-orange-100 text-orange-800 border border-orange-200;
+        }
+
+        .badge-s {
+            @apply bg-green-100 text-green-800 border border-green-200;
+        }
+
+        /* Download Button */
+        #download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--color-pnj-navy), #1e40af);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 45, 114, 0.25);
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        #download-btn:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            box-shadow: 0 6px 20px rgba(0, 45, 114, 0.35);
+            transform: translateY(-1px);
+        }
+
+        #download-btn:active {
+            transform: translateY(0);
+        }
+
+        #download-btn.loading {
+            opacity: 0.75;
+            cursor: wait;
+        }
+
+        #download-btn .spinner {
+            display: none;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin-slow 0.7s linear infinite;
+        }
+
+        #download-btn.loading .spinner {
+            display: inline-block;
+        }
+
+        #download-btn.loading .btn-icon {
+            display: none;
+        }
+
+        /* Hide during capture */
+        body.capturing .nav-sticky {
+            display: none !important;
+        }
+
+        /* STRATEGY HOUSE CSS */
+        .strategy-roof {
+            background: linear-gradient(135deg, var(--color-pnj-navy) 0%, #0a192f 100%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* CAR ENGINE ANIMATIONS */
+        @keyframes spin-fast {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-fast {
+            animation: spin-fast 0.6s linear infinite;
+        }
+
+        .animate-spin-slow {
+            animation: spin-fast 4s linear infinite;
+        }
+
+        @keyframes road-move {
+            0% {
+                transform: translateX(100vw);
+            }
+
+            100% {
+                transform: translateX(-100vw);
+            }
+        }
+
+        .road-stripe {
+            position: absolute;
+            height: 6px;
+            background-color: #cbd5e1;
+            border-radius: 3px;
+            top: 1px;
+        }
+
+        .stripe-1 {
+            width: 80px;
+            animation: road-move 3s linear infinite;
+        }
+
+        .stripe-2 {
+            width: 120px;
+            animation: road-move 3.5s linear infinite 1s;
+        }
+
+        .stripe-3 {
+            width: 60px;
+            animation: road-move 2.5s linear infinite 2s;
+        }
+
+        /* =============================================
+           CSS TỪ INDEX 3 - BẢN ĐỒ TỌA ĐỘ O2O
+           ============================================= */
+
+        /* Coordinate System Styles */
+        .graph-wrapper {
+            padding-left: 60px;
+            /* Space for Y-axis label */
+            padding-bottom: 40px;
+            /* Space for X-axis label */
+            position: relative;
+        }
+
+        .graph-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            background-image:
+                linear-gradient(rgba(203, 213, 225, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(203, 213, 225, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: left bottom;
+            border-left: 4px solid #002d72;
+            /* Y Axis */
+            border-bottom: 4px solid #002d72;
+            /* X Axis */
+        }
+
+        /* Arrows for axes */
+        .graph-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -12px;
+            border-width: 0 10px 20px 10px;
+            border-style: solid;
+            border-color: transparent transparent #002d72 transparent;
+        }
+
+        .graph-container::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            right: -20px;
+            border-width: 10px 0 10px 20px;
+            border-style: solid;
+            border-color: transparent transparent transparent #002d72;
+        }
+
+        /* Fixed Y Axis Label */
+        .y-axis-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 40px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .y-axis-label {
+            transform: rotate(-90deg);
+            white-space: nowrap;
+            transform-origin: center;
+        }
+
+        /* Diagonal Growth Path */
+        .growth-path {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top right, transparent 45%, rgba(212, 175, 55, 0.08) 50%, transparent 55%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Data Points (Cards) */
+        .data-card {
+            position: absolute;
+            transform: translate(-50%, 50%);
+            width: 190px;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .data-card:hover {
+            z-index: 20;
+            transform: translate(-50%, 50%) scale(1.05);
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Zones Backgrounds */
+        .zone-bg {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .zone-1 {
+            bottom: -10%;
+            left: -10%;
+            width: 50%;
+            height: 50%;
+            background-color: #64748b;
+        }
+
+        .zone-2 {
+            bottom: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            background-color: #002d72;
+        }
+
+        .zone-3 {
+            top: -10%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background-color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .graph-wrapper {
+                padding-left: 40px;
+            }
+
+            .graph-container {
+                height: 950px;
+            }
+
+            .data-card {
+                width: 160px;
+                transform: translate(0, 50%);
+            }
+
+            .y-axis-container {
+                width: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <div id="report-container" class="bg-white relative w-full overflow-hidden">
+
+
+
+        <!-- HERO SECTION -->
+        <section class="pt-20 pb-16 bg-white overflow-hidden border-b border-slate-200 relative">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 rounded-bl-[100px] -z-10"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider mb-6 font-heading border border-slate-200 shadow-sm">
+                    <i class="fas fa-layer-group text-[#facc15]"></i> Chiến Lược Tăng Trưởng 2026
+                </div>
+                <h1
+                    class="text-4xl md:text-6xl font-black mb-6 text-slate-900 leading-tight font-heading max-w-4xl mx-auto">
+                    Từ Vòng Xoáy Khuyến Mãi Đến <br>
+                    <span class="gradient-text">Cỗ Máy Tăng Trưởng Bền Vững</span>
+                </h1>
+                <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
+                    Cách PNJ chuyển dịch từ việc "chạy campaign bằng cơm" sang xây dựng Tài sản số, tối ưu giá trị vòng
+                    đời
+                    khách hàng và trao quyền cho Tiền tuyến.
+                </p>
+
+                <!-- HIGHLIGHT KPI BLOCK -->
+                <div
+                    class="max-w-sm mx-auto bg-white p-6 rounded-3xl border border-slate-200 card-shadow relative z-10">
+                    <div
+                        class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#d4af37] text-slate-900 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm whitespace-nowrap">
+                        Mục Tiêu Chiến Lược 2026
+                    </div>
+                    <p class="text-xs text-slate-500 font-bold uppercase font-heading mb-1 text-center mt-3">Target
+                        Khách
+                        Hàng Cũ</p>
+                    <p class="text-5xl font-black text-[#002d72] text-center my-2 font-heading tracking-tight">638,138
+                    </p>
+                    <div class="text-center mt-3">
+                        <span
+                            class="text-xs font-bold text-green-700 bg-green-50 px-3 py-1.5 rounded-lg border border-green-200 inline-flex items-center">
+                            <i class="fas fa-arrow-trend-up mr-1.5"></i> Tăng 11.7% so với cùng kỳ
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KHU VỰC COPY ĐỂ GHÉP VÀO INDEX.HTML -->
+        <section id="customer-health" class="py-12 bg-white border-b border-slate-200">
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- HEADER SECTION -->
+                <div class="text-center mb-10 max-w-3xl mx-auto">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span
+                            class="text-slate-500 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase inline-flex items-center">
+                            <i class="fas fa-file-medical-alt mr-1.5 text-[#002d72]"></i>Customer Health Report
+                        </span>
+                        <span
+                            class="text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase inline-flex items-center shadow-sm">
+                            <i class="fas fa-database mr-1.5"></i>Data Source: SSM (2025)
+                        </span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 font-heading tracking-tight mb-3">
+                        Bức Tranh Sức Khỏe <span class="text-[#002d72]">Khách Hàng PNJ</span>
+                    </h2>
+                    <p class="text-slate-600 font-medium text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                        Phân tích dữ liệu lịch sử để đánh giá sức khỏe tệp khách hàng thông qua 3 trọng tâm: <strong
+                            class="text-slate-800">Tần suất giao dịch</strong>, <strong class="text-slate-800">Cơ cấu
+                            phân lớp</strong> và <strong class="text-slate-800">Chân dung khách hàng</strong>.
+                    </p>
+                </div>
+
+                <!-- EXECUTIVE KPIS (COMPACT TOP-LINE) -->
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-0 mb-8 rounded-xl border border-slate-200 shadow-sm overflow-hidden bg-white">
+                    <div
+                        class="p-5 border-b md:border-b-0 md:border-r border-slate-200 flex flex-col items-center justify-center text-center relative">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-[#002d72]"></div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Tổng Tài Sản Dữ
+                            Liệu</div>
+                        <div class="text-3xl font-black text-slate-900 font-heading">4.4M<span
+                                class="text-sm text-slate-500 ml-1 font-medium">Khách</span></div>
+                    </div>
+
+                    <div
+                        class="p-5 border-b md:border-b-0 md:border-r border-slate-200 flex flex-col items-center justify-center text-center relative bg-red-50/30">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Khách Hàng Ngủ
+                            Đông</div>
+                        <div class="flex items-center gap-2">
+                            <div class="text-3xl font-black text-red-600 font-heading">3.3M</div>
+                            <div
+                                class="text-[10px] font-bold text-red-700 bg-red-100 border border-red-200 px-1.5 py-0.5 rounded shadow-sm">
+                                77.2%</div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex flex-col items-center justify-center text-center relative bg-emerald-50/30">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Quyền Lực Nhóm
+                            Active</div>
+                        <div class="flex items-center gap-2">
+                            <div class="text-3xl font-black text-emerald-600 font-heading">22.8%</div>
+                        </div>
+                        <div class="text-[10px] text-slate-500 mt-1 font-medium">Đóng góp 100% doanh thu trong năm.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 LĂNG KÍNH CHIẾN LƯỢC -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
+
+                    <!-- Insight 01: THE BILL JOURNEY - FULL WIDTH -->
+                    <div class="xl:col-span-2 bg-white border border-slate-200 p-6 md:p-8 rounded-2xl card-shadow">
+                        <div class="flex flex-col lg:flex-row gap-8 items-center">
+
+                            <!-- Left Text -->
+                            <div class="w-full lg:w-5/12">
+                                <div
+                                    class="text-[10px] font-black text-[#002d72] uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <i class="fas fa-shopping-bag"></i> Insight 01 | Tần Suất Giao Dịch
+                                </div>
+                                <h3 class="text-2xl font-black text-slate-900 mb-3 font-heading leading-tight">Vách Đá
+                                    Hành Vi Tại <span class="text-red-600 border-b-2 border-red-200">Bill Thứ 2</span>
+                                </h3>
+                                <p class="text-[13.5px] text-slate-600 leading-relaxed mb-6 font-medium">
+                                    Hơn phân nửa khách hàng (53%) dừng chân vĩnh viễn ở hóa đơn đầu tiên. Dữ liệu chỉ ra
+                                    sự đứt gãy lớn trong việc hình thành thói quen quay lại mua hàng ngay từ đầu phễu.
+                                </p>
+
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="bg-red-50 border-l-4 border-red-500 p-3 rounded-r-lg">
+                                        <h4 class="text-[11px] font-black text-red-800 uppercase mb-1">Bẫy Khách Vãng
+                                            Lai
+                                        </h4>
+                                        <p class="text-[11px] text-slate-700">Chi phí đắt đỏ để thu hút khách mới (CAC)
+                                            chưa được chuyển hóa thành giá trị vòng đời (LTV) do khách hàng không quay
+                                            lại lần 2.</p>
+                                    </div>
+                                    <div class="bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded-r-lg">
+                                        <h4 class="text-[11px] font-black text-emerald-800 uppercase mb-1">Cột Mốc
+                                            Chuyển
+                                            Đổi</h4>
+                                        <p class="text-[11px] text-slate-700">Tỷ lệ khách hàng gắn kết đạt 19% nếu họ
+                                            vượt qua được Bill 2. Đây là điểm bùng phát (Tipping Point) của lòng trung
+                                            thành.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Chart (Clean Vertical Bars) -->
+                            <div
+                                class="w-full lg:w-7/12 pt-4 lg:pt-0 pl-0 lg:pl-6 border-t lg:border-t-0 lg:border-l border-slate-100">
+                                <div
+                                    class="relative h-[220px] border-b-2 border-slate-200 flex items-end justify-between px-2 md:px-8 gap-2">
+                                    <!-- Grid lines -->
+                                    <div
+                                        class="absolute inset-0 flex flex-col justify-between pointer-events-none z-0 pb-8">
+                                        <div class="border-b border-slate-100 w-full h-0"></div>
+                                        <div class="border-b border-slate-100 w-full h-0"></div>
+                                        <div class="border-b border-slate-100 w-full h-0"></div>
+                                    </div>
+
+                                    <!-- Bar: Bill 1 -->
+                                    <div class="relative flex flex-col items-center w-full max-w-[80px] z-10 group">
+                                        <div class="text-xs font-black text-red-600 mb-1.5 drop-shadow-sm">53%</div>
+                                        <div
+                                            class="w-full bg-[#f43f5e] rounded-t-md h-[140px] transition-all duration-300 hover:opacity-80 shadow-sm">
+                                        </div>
+                                    </div>
+
+                                    <!-- Bar: Bill 2 -->
+                                    <div class="relative flex flex-col items-center w-full max-w-[80px] z-10 group">
+                                        <div class="text-xs font-black text-orange-500 mb-1.5 drop-shadow-sm">19%</div>
+                                        <div
+                                            class="w-full bg-[#f59e0b] rounded-t-md h-[55px] transition-all duration-300 hover:opacity-80 shadow-sm">
+                                        </div>
+                                    </div>
+
+                                    <!-- Bar: Bill 3-5 -->
+                                    <div class="relative flex flex-col items-center w-full max-w-[80px] z-10 group">
+                                        <div class="text-xs font-black text-emerald-500 mb-1.5 drop-shadow-sm">19%</div>
+                                        <div
+                                            class="w-full bg-[#10b981] rounded-t-md h-[55px] transition-all duration-300 hover:opacity-80 shadow-sm">
+                                        </div>
+                                    </div>
+
+                                    <!-- Bar: Bill 6-10 -->
+                                    <div class="relative flex flex-col items-center w-full max-w-[80px] z-10 group">
+                                        <div class="text-xs font-black text-blue-500 mb-1.5 drop-shadow-sm">6%</div>
+                                        <div
+                                            class="w-full bg-[#3b82f6] rounded-t-md h-[20px] transition-all duration-300 hover:opacity-80 shadow-sm">
+                                        </div>
+                                    </div>
+
+                                    <!-- Bar: >10 Bills -->
+                                    <div class="relative flex flex-col items-center w-full max-w-[80px] z-10 group">
+                                        <div class="text-xs font-black text-indigo-500 mb-1.5 drop-shadow-sm">3%</div>
+                                        <div
+                                            class="w-full bg-[#6366f1] rounded-t-md h-[10px] transition-all duration-300 hover:opacity-80 shadow-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- X Axis Labels -->
+                                <div class="flex justify-between px-2 md:px-8 mt-3">
+                                    <div class="w-full max-w-[80px] text-center text-[11px] font-bold text-slate-600">1
+                                        Bill</div>
+                                    <div class="w-full max-w-[80px] text-center text-[11px] font-bold text-slate-600">2
+                                        Bills</div>
+                                    <div class="w-full max-w-[80px] text-center text-[11px] font-bold text-slate-600">
+                                        3-5
+                                        Bills</div>
+                                    <div class="w-full max-w-[80px] text-center text-[11px] font-bold text-slate-600">
+                                        6-10 Bills</div>
+                                    <div class="w-full max-w-[80px] text-center text-[11px] font-bold text-slate-600">
+                                        >10
+                                        Bills</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Insight 02: PARETO - HALF WIDTH -->
+                    <div
+                        class="bg-white border border-slate-200 p-6 md:p-8 rounded-2xl card-shadow flex flex-col h-full">
+                        <div
+                            class="text-[10px] font-black text-[#002d72] uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <i class="fas fa-balance-scale"></i> Insight 02 | Bài Toán Nguồn Lực
+                        </div>
+                        <h3 class="text-xl font-black text-slate-900 mb-6 font-heading">Quy Luật Pareto Cực Đoan</h3>
+
+                        <div class="space-y-5 mb-6 flex-1">
+                            <!-- Header -->
+                            <div
+                                class="flex text-[9px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-2">
+                                <div class="w-[30%]">Phân Lớp</div>
+                                <div class="w-[30%] text-left">% Lượng KH</div>
+                                <div class="w-[40%] text-right">% Doanh Thu</div>
+                            </div>
+
+                            <!-- VIP -->
+                            <div class="flex items-center text-sm relative group">
+                                <div class="w-[30%]">
+                                    <span class="font-bold text-[#002d72] text-xs flex items-center gap-1.5"><i
+                                            class="fas fa-gem text-[10px] text-[#d4af37]"></i> VIP</span>
+                                    <span class="font-medium text-[9px] text-slate-400">> 500M</span>
+                                </div>
+                                <div class="w-[30%] flex items-center gap-2">
+                                    <span class="w-7 text-left font-medium text-slate-500 text-[10px]">0.6%</span>
+                                    <div class="flex-1 h-1.5 bg-slate-100 rounded-full">
+                                        <div class="h-full bg-slate-300 rounded-full w-[5%]"></div>
+                                    </div>
+                                </div>
+                                <div class="w-[40%] flex items-center justify-end gap-2">
+                                    <div class="w-16 h-2 bg-slate-100 rounded-full flex justify-end">
+                                        <div
+                                            class="h-full bg-gradient-to-r from-blue-600 to-[#002d72] rounded-full w-[40.9%] shadow-sm">
+                                        </div>
+                                    </div>
+                                    <span class="w-9 text-right font-black text-[#002d72] text-[13px]">40.9%</span>
+                                </div>
+                            </div>
+
+                            <!-- High -->
+                            <div class="flex items-center text-sm relative group">
+                                <div class="w-[30%]">
+                                    <span class="font-bold text-teal-700 text-xs flex items-center gap-1.5"><i
+                                            class="fas fa-layer-group text-[10px] text-teal-500"></i> High</span>
+                                    <span class="font-medium text-[9px] text-slate-400">100M - 500M</span>
+                                </div>
+                                <div class="w-[30%] flex items-center gap-2">
+                                    <span class="w-7 text-left font-medium text-slate-500 text-[10px]">6.7%</span>
+                                    <div class="flex-1 h-1.5 bg-slate-100 rounded-full">
+                                        <div class="h-full bg-slate-300 rounded-full w-[15%]"></div>
+                                    </div>
+                                </div>
+                                <div class="w-[40%] flex items-center justify-end gap-2">
+                                    <div class="w-16 h-2 bg-slate-100 rounded-full flex justify-end">
+                                        <div class="h-full bg-teal-600 rounded-full w-[22.2%] shadow-sm"></div>
+                                    </div>
+                                    <span class="w-9 text-right font-bold text-teal-700 text-[13px]">22.2%</span>
+                                </div>
+                            </div>
+
+                            <!-- Mid -->
+                            <div class="flex items-center text-sm relative group">
+                                <div class="w-[30%]">
+                                    <span class="font-bold text-blue-600 text-xs flex items-center gap-1.5"><i
+                                            class="fas fa-cube text-[10px] text-blue-400"></i> Mid</span>
+                                    <span class="font-medium text-[9px] text-slate-400">20M - 100M</span>
+                                </div>
+                                <div class="w-[30%] flex items-center gap-2">
+                                    <span class="w-7 text-left font-medium text-slate-500 text-[10px]">15.0%</span>
+                                    <div class="flex-1 h-1.5 bg-slate-100 rounded-full">
+                                        <div class="h-full bg-slate-300 rounded-full w-[25%]"></div>
+                                    </div>
+                                </div>
+                                <div class="w-[40%] flex items-center justify-end gap-2">
+                                    <div class="w-16 h-2 bg-slate-100 rounded-full flex justify-end">
+                                        <div class="h-full bg-blue-500 rounded-full w-[25.0%] shadow-sm"></div>
+                                    </div>
+                                    <span class="w-9 text-right font-bold text-blue-600 text-[13px]">25.0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Basic -->
+                            <div class="flex items-center text-sm relative group">
+                                <div class="w-[30%]">
+                                    <span class="font-bold text-slate-600 text-xs flex items-center gap-1.5"><i
+                                            class="fas fa-user text-[10px] text-slate-400"></i> Basic</span>
+                                    <span class="font-medium text-[9px] text-slate-400">
+                                        < 20M</span>
+                                </div>
+                                <div class="w-[30%] flex items-center gap-2">
+                                    <span class="w-7 text-left font-medium text-slate-800 text-[10px]">77.7%</span>
+                                    <div class="flex-1 h-1.5 bg-slate-100 rounded-full">
+                                        <div class="h-full bg-slate-400 rounded-full w-[77.7%]"></div>
+                                    </div>
+                                </div>
+                                <div class="w-[40%] flex items-center justify-end gap-2">
+                                    <div class="w-16 h-2 bg-slate-100 rounded-full flex justify-end">
+                                        <div class="h-full bg-slate-500 rounded-full w-[11.9%] shadow-sm"></div>
+                                    </div>
+                                    <span class="w-9 text-right font-bold text-slate-600 text-[13px]">11.9%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 mt-auto">
+                            <p class="text-[11.5px] text-slate-700 leading-relaxed">
+                                <strong class="text-[#002d72] block mb-1 uppercase tracking-wider text-[10px]"><i
+                                        class="fas fa-chart-bar text-slate-500 mr-1"></i> Insight</strong>
+                                Cơ cấu phân bổ nguồn lực mất cân đối. Nhóm Basic (77.7%) gây áp lực khổng lồ lên chi phí
+                                vận hành (Cost-to-serve), trong khi nhóm VIP (0.6%) đóng vai trò sống còn nhưng lại đối
+                                mặt rủi ro phụ thuật cao (Concentration Risk).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Insight 03: DEMOGRAPHICS - HALF WIDTH -->
+                    <div
+                        class="bg-white border border-slate-200 p-6 md:p-8 rounded-2xl card-shadow flex flex-col h-full">
+                        <div
+                            class="text-[10px] font-black text-[#002d72] uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <i class="fas fa-fingerprint"></i> Insight 03 | Khẩu Vị Nhân Khẩu Học
+                        </div>
+                        <h3 class="text-xl font-black text-slate-900 mb-6 font-heading">Sự Phân Cực Động Cơ Mua Sắm</h3>
+
+                        <div class="flex items-center gap-5 mb-6 border-b border-slate-100 pb-5">
+                            <div
+                                class="text-center w-24 shrink-0 bg-blue-50/50 p-3 rounded-xl border border-blue-100 shadow-sm">
+                                <div class="text-3xl font-black text-[#002d72] font-heading leading-none mb-1">78.9<span
+                                        class="text-sm text-blue-500">%</span></div>
+                                <div class="text-[9px] font-bold text-slate-600 uppercase">Khách Hàng<br>
+                                    < 35 Tuổi</div>
+                                </div>
+                                <p class="text-[11.5px] text-slate-600 leading-relaxed flex-1 font-medium">
+                                    Sự trẻ hóa mạnh mẽ của tệp khách hàng (Millennials & Gen Z) đi kèm với những thay
+                                    đổi rõ
+                                    rệt về hành vi và mục đích cốt lõi khi tiếp cận thương hiệu.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 flex-1">
+                                <!-- Nữ Persona -->
+                                <div
+                                    class="bg-white border border-slate-200 rounded-xl p-4 flex flex-col relative overflow-hidden shadow-sm hover:border-pink-300 transition-colors">
+                                    <div class="absolute top-0 left-0 w-1 h-full bg-pink-400"></div>
+                                    <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                                        <span class="text-xs font-bold text-slate-800">Nữ Giới</span>
+                                        <span
+                                            class="text-[10px] font-black text-pink-600 bg-pink-50 px-2 py-0.5 rounded border border-pink-100">66.6%</span>
+                                    </div>
+                                    <ul class="text-[11px] text-slate-600 space-y-2 list-none">
+                                        <li class="flex items-start gap-1.5"><i
+                                                class="fas fa-check text-pink-400 mt-0.5 text-[9px]"></i> Đề cao tính
+                                            duy mỹ
+                                            và trải nghiệm cảm xúc.</li>
+                                        <li class="flex items-start gap-1.5"><i
+                                                class="fas fa-check text-pink-400 mt-0.5 text-[9px]"></i> Mua sắm để tự
+                                            thưởng <strong>(Self-treat)</strong>.</li>
+                                        <li class="flex items-start gap-1.5"><i
+                                                class="fas fa-check text-pink-400 mt-0.5 text-[9px]"></i> Đòi hỏi tính
+                                            cá
+                                            nhân hóa cao.</li>
+                                    </ul>
+                                </div>
+                                <!-- Nam Persona -->
+                                <div
+                                    class="bg-white border border-slate-200 rounded-xl p-4 flex flex-col relative overflow-hidden shadow-sm hover:border-blue-300 transition-colors">
+                                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                                    <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                                        <span class="text-xs font-bold text-slate-800">Nam Giới</span>
+                                        <span
+                                            class="text-[10px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">33.1%</span>
+                                    </div>
+                                    <ul class="text-[11px] text-slate-600 space-y-2 list-none">
+                                        <li class="flex items-start gap-1.5"><i
+                                                class="fas fa-check text-blue-400 mt-0.5 text-[9px]"></i> Đề cao tính
+                                            mục
+                                            đích và sự thuận tiện.</li>
+                                        <li class="flex items-start gap-1.5"><i
+                                                class="fas fa-check text-blue-400 mt-0.5 text-[9px]"></i> Mua sắm làm
+                                            quà
+                                            tặng <strong>(Gifter)</strong>.</li>
+                                        <li class="flex items-start gap-1.5"><i
+                                                class="fas fa-check text-blue-400 mt-0.5 text-[9px]"></i> Cần tư vấn
+                                            nhanh
+                                            chóng, chính xác.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 mt-auto">
+                                <p class="text-[11.5px] text-slate-700 leading-relaxed">
+                                    <strong class="text-[#002d72] block mb-1 uppercase tracking-wider text-[10px]"><i
+                                            class="fas fa-chart-bar text-slate-500 mr-1"></i> Insight </strong>
+                                    Thế hệ khách hàng mới phản ứng tiêu cực với các thông điệp Tiếp thị đại trà
+                                    (Mass-Marketing) cào bằng. Sự phân cực rõ rệt về động cơ mua sắm đòi hỏi mức độ thấu
+                                    hiểu cá nhân hóa sâu sắc từ thương hiệu.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+        <!-- KẾT THÚC KHU VỰC COPY -->
+
+        <!-- [P] PROBLEM: THE LEAKY BATHTUB -->
+        <section id="problem" class="py-20 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span
+                            class="badge-p px-3 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase inline-flex items-center shadow-sm">
+                            <i class="fas fa-exclamation-circle mr-1.5"></i> Bước 1: Problem (Vấn Đề)
+                        </span>
+                        <span
+                            class="text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase inline-flex items-center shadow-sm">
+                            <i class="fas fa-database mr-1.5"></i>Data Source: DSS (2025)
+                        </span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 font-heading">Chiếc Bồn Tắm Rò Rỉ</h2>
+                    <p class="text-slate-600 mt-4 font-medium max-w-2xl mx-auto">
+                        Chúng ta đang mắc kẹt trong vòng lặp lãng phí. Marketing chi hàng tỷ đồng để kéo khách hàng mới
+                        (mở
+                        vòi nước), nhưng lại bỏ quên "đáy bồn", khiến khách mua 1 lần rồi rời đi mãi mãi.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-8 md:p-12 rounded-3xl card-shadow border border-slate-100 flex flex-col lg:flex-row items-center justify-center gap-16 relative overflow-hidden">
+
+                    <!-- LITERAL CSS BATHTUB MODEL -->
+                    <div class="relative w-80 h-80 shrink-0">
+                        <!-- Top: Faucet & Inflow -->
+                        <div class="absolute top-0 left-12 flex flex-col items-center">
+                            <div
+                                class="text-[10px] font-bold text-blue-800 uppercase mb-1 bg-blue-100 px-2 py-1 rounded font-heading">
+                                <i class="fas fa-bullhorn"></i> MKT Kéo Khách Mới
+                            </div>
+                            <i class="fas fa-faucet text-5xl text-slate-400"></i>
+                        </div>
+                        <!-- Water Drip -->
+                        <div
+                            class="absolute top-16 left-[76px] w-2.5 h-20 bg-blue-400 animate-drip rounded-full opacity-80 z-10">
+                        </div>
+
+                        <!-- The Tub Body -->
+                        <div
+                            class="absolute bottom-20 left-4 w-[90%] h-32 bg-white border-4 border-slate-300 rounded-b-[60px] shadow-[inset_0_-10px_20px_rgba(0,0,0,0.1)] z-20 overflow-hidden flex items-end">
+                            <div
+                                class="w-full h-20 bg-[#3b82f6] opacity-90 animate-wave border-t-4 border-blue-300 flex items-center justify-center">
+                                <span class="text-white font-black tracking-widest text-sm drop-shadow-md">TỆP KHÁCH
+                                    HÀNG</span>
+                            </div>
+                        </div>
+                        <!-- Tub Rim & Feet -->
+                        <div
+                            class="absolute bottom-[196px] left-0 w-full h-5 bg-slate-50 border-4 border-slate-300 rounded-full z-30 shadow-sm">
+                        </div>
+                        <div
+                            class="absolute bottom-16 left-12 w-5 h-8 bg-slate-400 rounded-b-2xl transform -rotate-12 z-10 shadow-md">
+                        </div>
+                        <div
+                            class="absolute bottom-16 right-12 w-5 h-8 bg-slate-400 rounded-b-2xl transform rotate-12 z-10 shadow-md">
+                        </div>
+
+                        <!-- The Leak (Outflow) -->
+                        <div
+                            class="absolute bottom-16 left-1/2 transform -translate-x-1/2 w-8 h-4 bg-slate-800 rounded-full z-30 flex items-center justify-center border-2 border-slate-400">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-20 bg-red-500 animate-leak rounded-full z-0 opacity-90 shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                        </div>
+                        <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-48 text-center">
+                            <span
+                                class="font-bold text-red-700 text-[11px] bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 uppercase font-heading whitespace-nowrap shadow-sm">
+                                <i class="fas fa-sign-out-alt"></i> KHÁCH RỜI BỎ (CHURN)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Pain Points Data Summary -->
+                    <div class="max-w-lg w-full">
+                        <h3
+                            class="text-2xl font-black text-slate-800 mb-6 font-heading border-b-2 border-red-200 inline-block pb-2">
+                            Thực Trạng Đáng Báo Động (2025)</h3>
+
+                        <!-- Overall Stats -->
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <p class="text-[10px] text-slate-500 font-bold uppercase mb-1 tracking-wide">Tổng SLKH
+                                    Lũy
+                                    Kế</p>
+                                <p class="text-3xl font-black text-slate-800">4.15<span class="text-lg">M</span></p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 shadow-sm">
+                                <p class="text-[10px] text-blue-800 font-bold uppercase mb-1 tracking-wide">KHC Quay Lại
+                                    Mua
+                                </p>
+                                <div class="flex items-baseline gap-2">
+                                    <p class="text-3xl font-black text-[#002d72]">541<span class="text-lg">K</span></p>
+                                    <span
+                                        class="text-xs font-bold text-white bg-red-500 px-1.5 py-0.5 rounded shadow-sm leading-tight inline-block transform -translate-y-1">Chỉ
+                                        13%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Warning to Churn Insight -->
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-100 shadow-sm relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500"></div>
+                            <h4
+                                class="font-bold text-red-800 text-sm uppercase mb-3 flex items-center gap-2 font-heading tracking-wide">
+                                <i class="fas fa-exclamation-triangle"></i> Cảnh báo rời bỏ (Warning To Churn)
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-end border-b border-red-100 pb-2">
+                                    <span class="text-xs text-red-700 font-medium">SLKH LK có nguy cơ rời bỏ:</span>
+                                    <span class="text-base font-bold text-red-900">415,168</span>
+                                </div>
+                                <div class="flex justify-between items-end border-b border-red-100 pb-2">
+                                    <span class="text-xs text-red-700 font-medium">Tỷ lệ "cứu" thành công:</span>
+                                    <span
+                                        class="text-xs font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded border border-green-200">17.5%</span>
+                                </div>
+                                <div class="pt-1">
+                                    <p class="text-[13px] text-red-800 font-medium mb-1">Khách hàng mất trắng (Chưa quay
+                                        lại): <span
+                                            class="font-black text-lg text-red-600 bg-white px-2 py-0.5 rounded ml-1 border border-red-200">342,344</span>
+                                    </p>
+                                    <div
+                                        class="bg-white p-3.5 rounded-lg border border-red-200 shadow-sm mt-3 relative">
+                                        <div
+                                            class="absolute -top-2 left-4 w-3 h-3 bg-white border-t border-l border-red-200 transform rotate-45">
+                                        </div>
+                                        <p class="text-[11px] text-slate-700 leading-relaxed font-medium relative z-10">
+                                            <i class="fas fa-search-dollar text-red-500 mr-1 text-sm"></i> <strong>Sự
+                                                lãng
+                                                phí khổng lồ:</strong> Trong số 342 ngàn khách đã mất, có tới <strong
+                                                class="text-red-600 text-sm border-b border-red-300">278,872</strong>
+                                            khách
+                                            thuộc nhóm giá trị cao <strong>Loyalty Customers & Potential
+                                                Loyalists</strong>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hệ Quả Thực Tế -->
+                        <div class="mt-8">
+                            <h4 class="font-black text-slate-800 mb-4 font-heading text-lg flex items-center gap-2">
+                                <i class="fas fa-arrow-circle-right text-red-500"></i> Hệ Quả Thực Tế
+                            </h4>
+                            <ul class="space-y-4">
+                                <li
+                                    class="flex items-start gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-red-300 transition">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-500 shrink-0 mt-0.5">
+                                        <i class="fas fa-chart-line transform rotate-180"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800 text-sm mb-1 uppercase tracking-wide">Tỷ lệ
+                                            Active thấp</h5>
+                                        <p class="text-[13px] text-slate-600 leading-relaxed font-medium">Dù liên tục có
+                                            khách mới, tổng lượng khách hàng Active tăng trưởng rất chậm vì tốc độ khách
+                                            cũ
+                                            rơi rụng (Churn) quá cao.</p>
+                                    </div>
+                                </li>
+                                <li
+                                    class="flex items-start gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-orange-300 transition">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 shrink-0 mt-0.5">
+                                        <i class="fas fa-wallet"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800 text-sm mb-1 uppercase tracking-wide">Lãng
+                                            phí
+                                            ngân sách chuyển đổi</h5>
+                                        <p class="text-[13px] text-slate-600 leading-relaxed font-medium">Chi phí để
+                                            kiếm 1
+                                            khách mới (CAC) luôn cao gấp 5-7 lần chi phí giữ chân khách cũ. Để mất tệp
+                                            cũ là
+                                            vứt tiền qua cửa sổ.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [A] AGITATION: SPAM & THE WRONG CURE -->
+        <section id="agitation" class="py-20 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span
+                        class="badge-a px-3 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block shadow-sm">
+                        <i class="fas fa-fire-alt mr-1"></i> Bước 2: Agitation (Khoét Sâu Nỗi Đau)
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 font-heading">Từ "Điểm chạm đúng lúc" đến
+                        Trải nghiệm đứt gãy</h2>
+                    <p class="text-slate-600 mt-4 font-medium max-w-3xl mx-auto">
+                        Tương tác đại trà (Mass Broadcasting) từng được xem là <strong>biện pháp 'chữa cháy'</strong>.
+                        Nhưng thực tế, việc lạm dụng nó đang trở thành liều độc dược tạo ra 2 hệ lụy song song:.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+
+                    <!-- Agitation 1: The Spam Nightmare -->
+                    <div
+                        class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center relative overflow-hidden">
+                        <div class="absolute top-0 w-full h-1.5 bg-orange-500"></div>
+                        <div
+                            class="w-12 h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-comment-slash"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 font-heading text-xl text-center mb-2">Trải Nghiệm Đứt Gãy
+                            (Contextless Spam)</h4>
+                        <p class="text-sm text-center text-slate-600 mb-8">Giao tiếp rập khuôn và nhồi nhét ưu đãi đang
+                            tước đi sự tinh tế của thương hiệu cao cấp, đẩy khách hàng đến quyết định cuối cùng: Block
+                            Zalo OA.</p>
+
+                        <!-- Phone UI Mockup -->
+                        <div
+                            class="w-64 h-[26rem] border-[6px] border-slate-800 rounded-[2rem] p-3 relative bg-slate-100 shadow-inner flex flex-col pt-6">
+                            <!-- Notch -->
+                            <div
+                                class="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-1.5 bg-slate-800 rounded-full">
+                            </div>
+                            <!-- Messages scroll area -->
+                            <div class="flex-1 overflow-y-auto space-y-2.5 pb-14 pr-0.5">
+                                <div
+                                    class="bg-white p-2.5 rounded-lg shadow-sm text-[10px] border-l-2 border-orange-400 font-medium transform -translate-x-1">
+                                    <span class="font-bold text-orange-600">[Lạm dụng KM]</span><br>PNJ: Nhân dịp sinh
+                                    nhật - Tặng bạn
+                                    ưu đãi mua sắm trang sức.... (01/02/2026)
+                                </div>
+                                <div
+                                    class="bg-white p-2.5 rounded-lg shadow-sm text-[10px] border-l-2 border-orange-400 font-medium transform translate-x-1">
+                                    <span class="font-bold text-orange-600">[Lạm dụng KM]</span><br>PNJ: Sắp đến
+                                    Valentine - tặng bạn Voucher 8% ...! (03/02/2026)
+                                </div>
+                                <div
+                                    class="bg-white p-2.5 rounded-lg shadow-sm text-[10px] border-l-2 border-orange-400 font-medium opacity-80 transform -translate-x-1">
+                                    <span class="font-bold text-orange-600">[Đặc quyền Ảo]</span><br>PNJ: Thư mời VIP
+                                    PASS BST mới (Gửi đại trà)... (05/02/2026)
+                                </div>
+                                <div
+                                    class="bg-white p-2.5 rounded-lg shadow-sm text-[10px] border-l-2 border-orange-400 font-medium opacity-60">
+                                    <span class="font-bold text-orange-600">[Máy móc]</span><br>PNJ: Chúng tôi nhớ bạn!
+                                    Đã 365 ngày bạn chưa ghé... (14/02/2026)
+                                </div>
+                            </div>
+                            <!-- Block OA Banner - fixed at bottom inside phone -->
+                            <div class="absolute bottom-2.5 right-2 left-2 text-center text-red-500 text-[10px] font-black
+                                uppercase tracking-wider bg-red-50 py-2 rounded border border-red-200 z-20">
+                                <i class="fas fa-ban mb-0.5 block text-lg"></i> Khách Đã Block Zalo OA
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agitation 2: The Profit Cannibalization (Uplift Matrix) -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 w-full h-1.5 bg-red-500"></div>
+                        <div class="flex flex-col items-center mb-8">
+                            <div
+                                class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xl mb-4">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 font-heading text-xl text-center mb-2">Đốt Lợi Nhuận
+                                (Cannibalization)</h4>
+                            <div class="text-sm text-left text-slate-600 space-y-2 mt-2">
+                                <p><span class="font-bold text-red-600">① 'Biếu không' lợi nhuận:</span> Cắt máu giảm
+                                    giá cho tệp khách vốn sẵn sàng mua nguyên giá.</p>
+                                <p><span class="font-bold text-orange-600">② Kích hoạt rời bỏ:</span> Gây phản cảm tột
+                                    độ cho tệp khách hàng nhạy cảm với quảng cáo.</p>
+                            </div>
+                        </div>
+
+                        <!-- Uplift Matrix CSS -->
+                        <div
+                            class="relative w-full max-w-[280px] mx-auto aspect-square bg-white border border-slate-200 grid grid-cols-2 grid-rows-2 p-1 gap-1 rounded-xl shadow-sm mt-4">
+                            <!-- Axis Labels -->
+                            <div
+                                class="absolute -top-6 left-0 w-full text-center text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                                Không nhận Voucher</div>
+                            <div
+                                class="absolute top-1/2 -left-7 transform -translate-y-1/2 -rotate-90 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                                Nhận Voucher</div>
+
+                            <!-- Q1: Persuadables -->
+                            <div
+                                class="bg-slate-50 rounded-tl-lg flex flex-col items-center justify-center p-2 text-center opacity-40">
+                                <h4 class="font-bold text-slate-600 text-[10px] uppercase">Cần Cú Hích</h4>
+                                <p class="text-[8px] text-slate-500">(Nên tập trung)</p>
+                            </div>
+
+                            <!-- Q2: Sure Things -->
+                            <div
+                                class="bg-red-50 border-2 border-red-400 rounded-tr-lg flex flex-col items-center justify-center p-2 text-center shadow-inner relative z-10">
+                                <i class="fas fa-wallet text-red-500 text-2xl mb-1"></i>
+                                <h4 class="font-bold text-red-800 font-heading text-[11px] uppercase">Không Sales Vẫn
+                                    Mua
+                                </h4>
+                                <p
+                                    class="text-[9px] text-white font-bold uppercase mt-1 bg-red-500 px-1.5 py-0.5 rounded leading-tight">
+                                    Giảm biên<br>lợi nhuận</p>
+                            </div>
+
+                            <!-- Q3: Lost Causes -->
+                            <div
+                                class="bg-slate-50 rounded-bl-lg flex flex-col items-center justify-center p-2 text-center opacity-40">
+                                <h4 class="font-bold text-slate-600 text-[10px] uppercase">Sales Cũng Không Mua</h4>
+                                <p class="text-[8px] text-slate-500">(Tốn chi phí)</p>
+                            </div>
+
+                            <!-- Q4: Sleeping Dogs -->
+                            <div
+                                class="bg-orange-50 border-2 border-orange-400 rounded-br-lg flex flex-col items-center justify-center p-2 text-center shadow-inner relative z-10">
+                                <i class="fas fa-bed text-orange-500 text-2xl mb-1"></i>
+                                <h4 class="font-bold text-orange-800 font-heading text-[11px] uppercase">Phản Tác Dụng
+                                </h4>
+                                <p
+                                    class="text-[9px] text-white font-bold uppercase mt-1 bg-orange-500 px-1.5 py-0.5 rounded leading-tight">
+                                    Spam gây<br>phản cảm</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <p class="text-[10px] text-slate-400 italic">
+                                <strong>* Dựa trên Uplift Modeling</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [S] SOLUTION: THE OMNI-GROWTH STRATEGY -->
+        <section id="solution" class="py-24 bg-[#f8fafc] border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20">
+                    <span
+                        class="badge-s px-3 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block shadow-sm">
+                        <i class="fas fa-lightbulb mr-1"></i> Bước 3: Solution (Giải Pháp)
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 font-heading tracking-tight mb-4">Chiến
+                        Lược
+                        Omni-Growth 2026</h2>
+                    <p class="text-slate-600 font-medium max-w-3xl mx-auto text-lg">
+                        Chuyển dịch từ việc vung tiền chạy Chiến dịch ngắn hạn sang việc xây dựng <strong
+                            class="text-[#002d72]">Tài sản số (Flywheel)</strong>. Triết lý vận hành cốt lõi: <span
+                            class="bg-green-100 text-green-800 px-2 rounded font-bold">Tech x Touch</span>.
+                    </p>
+                </div>
+
+                <!-- The Big Shift & Human Touch -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+
+                    <!-- The Shift: Funnel to Flywheel -->
+                    <div
+                        class="relative bg-white p-8 rounded-3xl border border-slate-100 card-shadow flex flex-col items-center justify-center h-full">
+                        <h3
+                            class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-8 font-heading text-center">
+                            Sự Chuyển Hóa Cốt Lõi</h3>
+
+                        <div class="flex items-center justify-center gap-4 md:gap-8 w-full">
+                            <!-- Left: Funnel (Old way) -->
+                            <div class="flex flex-col items-center opacity-40 grayscale">
+                                <div class="w-20 h-20 bg-slate-400 funnel-shape"></div>
+                                <div class="w-5 h-10 bg-slate-400 mt-1 rounded-b-md"></div>
+                                <p class="text-[10px] font-bold mt-4 uppercase text-center">Campaign<br>Rời rạc & Thủ
+                                    công
+                                </p>
+                            </div>
+
+                            <!-- Middle: Arrow -->
+                            <div class="flex flex-col items-center text-green-500">
+                                <i class="fas fa-angle-double-right text-3xl mb-6"></i>
+                            </div>
+
+                            <!-- Right: Flywheel (New way) -->
+                            <div class="flex flex-col items-center">
+                                <div class="relative w-32 h-32">
+                                    <div
+                                        class="absolute inset-0 border-4 border-green-500 rounded-full border-dashed animate-spin-slow opacity-30">
+                                    </div>
+                                    <div class="absolute inset-2 border-4 border-transparent border-t-green-600 border-r-[#facc15] border-b-green-600 border-l-[#facc15] rounded-full animate-spin-slow"
+                                        style="animation-direction: reverse;"></div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center text-3xl text-green-600">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </div>
+                                </div>
+                                <p class="text-[10px] font-bold mt-4 uppercase text-green-700 text-center">Hệ Thống Tự
+                                    Động<br>(Always-on Playbooks)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Solution: Contextual Human Touch -->
+                    <div
+                        class="bg-white p-8 rounded-3xl border border-green-200 card-shadow flex flex-col items-center relative overflow-hidden transform md:scale-105 z-10 animate-pulse-border">
+                        <div class="absolute top-0 w-full h-2 bg-green-500"></div>
+                        <div
+                            class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-2xl mb-4 shadow-sm">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 class="font-black text-slate-900 font-heading text-xl">Tech x Touch (Trao quyền O2O)</h4>
+                        <p class="text-sm text-center text-slate-600 mt-2 mb-6">Hệ thống CDP (Tech) xác định chính xác
+                            khách
+                            hàng đang lưỡng lự. Tư vấn viên cửa hàng (Touch) thực hiện chăm sóc và chốt đơn.</p>
+
+                        <!-- Store UI Mockup -->
+                        <div
+                            class="w-full max-w-sm h-auto border border-slate-200 rounded-2xl p-5 bg-[#f8fafc] flex flex-col items-start justify-center shadow-inner relative">
+                            <div
+                                class="absolute top-0 right-4 transform -translate-y-1/2 bg-green-100 text-green-800 text-[9px] font-black px-3 py-1 rounded-full uppercase border border-green-300 shadow-sm">
+                                <i class="fas fa-crosshairs"></i> Target: Persuadable
+                            </div>
+                            <div class="flex items-center gap-3 mb-4 w-full border-b border-slate-200 pb-3">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-[#002d72] text-[#002d72] rounded-full flex items-center justify-center text-xl shadow-sm">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800 leading-tight">Tư Vấn Viên Cửa Hàng PNJ
+                                    </p>
+                                    <p class="text-[10px] text-slate-500">Thực hiện kịch bản chăm sóc 1:1</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-slate-200 w-full shadow-sm relative">
+                                <div
+                                    class="absolute -left-2 top-4 w-4 h-4 bg-white border-l border-b border-slate-200 transform rotate-45">
+                                </div>
+                                <p class="text-xs text-slate-700 italic font-medium relative z-10">"Kính mời anh/chị
+                                    ....
+                                    đến cửa hàng PNJ Next Gò Vấp - 362A Nguyễn Văn Nghi,Phừơng Đức Nhuận, Gò Vấp để làm
+                                    sạch
+                                    sản phẩm miễn phí nhé..."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Core Engine: Playbooks Tree -->
+                <div class="bg-white rounded-3xl card-shadow border border-slate-100 p-8 md:p-12 mt-12">
+                    <h3 class="text-2xl font-black text-slate-900 mb-8 font-heading text-center">Tuyến Playbook Thực Thi
+                    </h3>
+
+                    <div class="flex flex-col items-center w-full max-w-4xl mx-auto">
+                        <!-- Root -->
+                        <div
+                            class="bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-base shrink-0 z-10 font-heading mb-8 relative flex items-center gap-3">
+                            <i class="fas fa-database text-[#facc15] text-xl"></i> TÀI SẢN TĂNG TRƯỞNG O2O (CDP)
+                            <div
+                                class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-full w-1 h-8 bg-slate-300">
+                            </div>
+                        </div>
+
+                        <!-- Branches Container -->
+                        <div
+                            class="w-full border-t-[3px] border-slate-300 relative pt-8 flex flex-col md:flex-row gap-6 md:gap-4 justify-between">
+
+                            <!-- Branch 1: Midflow -->
+                            <div class="flex-1 relative">
+                                <div
+                                    class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-1 h-8 bg-slate-300">
+                                </div>
+                                <div
+                                    class="bg-blue-50 border border-blue-200 text-[#002d72] px-4 py-2 rounded-lg font-bold text-sm mb-4 shadow-sm text-center">
+                                    <i class="fas fa-play-circle mr-1 text-blue-500"></i> ĐANG VẬN HÀNH (Scale)
+                                </div>
+                                <div class="space-y-3">
+                                    <div
+                                        class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-blue-400 transition">
+                                        <p class="font-bold text-slate-800 text-sm mb-1"><i
+                                                class="fas fa-users text-blue-400 mr-1"></i> Clienteling (RFM + CJM)</p>
+                                        <p class="text-[11px] text-slate-600 mb-2">Thấu hiểu chân dung số - May đo trải
+                                            nghiệm.</p>
+                                        <div
+                                            class="bg-blue-50 text-[#002d72] text-[10px] font-bold px-2 py-1 rounded inline-block border border-blue-100 shadow-sm w-full">
+                                            <i class="fas fa-chart-pie mr-1 opacity-70"></i> SLKH Chăm sóc: <span
+                                                class="text-blue-600">~500k / tháng</span> <span
+                                                class="mx-1 text-slate-300">|</span> CR%: <span
+                                                class="text-blue-600">~5%</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-green-400 transition">
+                                        <p class="font-bold text-slate-800 text-sm mb-1"><i
+                                                class="fas fa-wifi text-green-500 mr-1"></i> Tín Hiệu O2O (CJM360)</p>
+                                        <p class="text-[11px] text-slate-600 mb-2">Chuyển hóa Digital Footprint thành
+                                            Store
+                                            Leads.</p>
+                                        <div
+                                            class="bg-green-50 text-green-800 text-[10px] font-bold px-2 py-1 rounded inline-block border border-green-200 shadow-sm w-full">
+                                            <i class="fas fa-bolt mr-1 opacity-70"></i> Pilot 3 CN: <span
+                                                class="text-green-600">~5,000 lead / tháng</span> <span
+                                                class="mx-1 text-slate-300">|</span> CR%: <span
+                                                class="text-green-600">~16%</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-yellow-400 transition">
+                                        <p class="font-bold text-slate-800 text-sm mb-1"><i
+                                                class="fas fa-star text-yellow-400 mr-1"></i> Aftersales VOC</p>
+                                        <p class="text-[11px] text-slate-600">Phân luồng thông minh: 5★: Upsell Tự động
+                                            |
+                                            Dưới 3★: Recovery Tức thì.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Branch 2: R&D -->
+                            <div class="flex-1 relative">
+                                <div
+                                    class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full w-1 h-8 bg-slate-300">
+                                </div>
+                                <div
+                                    class="bg-slate-800 border border-slate-700 text-white px-4 py-2 rounded-lg font-bold text-sm mb-4 shadow-sm text-center">
+                                    <i class="fas fa-flask mr-1 text-[#facc15]"></i> R&D (Phát Triển 2026)
+                                </div>
+                                <div class="space-y-3">
+                                    <div
+                                        class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm relative overflow-hidden">
+                                        <div
+                                            class="absolute top-0 right-0 bg-red-500 text-white text-[8px] font-bold px-2 py-0.5 rounded-bl-lg">
+                                            NEW</div>
+                                        <p class="font-bold text-slate-800 text-sm mb-1"><i
+                                                class="fas fa-calculator text-indigo-500 mr-1"></i> Customer Scoring
+                                            Card
+                                        </p>
+                                        <p class="text-[11px] text-slate-600">Chuyển hóa 'Dấu chân số' thành 'Điểm rơi
+                                            mua
+                                            hàng'.</p>
+                                    </div>
+                                    <div
+                                        class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm relative overflow-hidden">
+                                        <div
+                                            class="absolute top-0 right-0 bg-red-500 text-white text-[8px] font-bold px-2 py-0.5 rounded-bl-lg">
+                                            NEW</div>
+                                        <p class="font-bold text-slate-800 text-sm mb-1"><i
+                                                class="fas fa-satellite-dish text-red-500 mr-1"></i> CIS (Đánh Chặn)</p>
+                                        <p class="text-[11px] text-slate-600">Phát hiện ý định rời bỏ để tung kịch bản
+                                            Win-back.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [EXECUTION] DASHBOARD & RESULTS -->
+        <section id="execution" class="py-20 bg-[#0f172a] text-slate-100 border-b-8 border-[#002d72]">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span
+                        class="text-white bg-slate-800 border border-slate-600 px-3 py-1 rounded-full text-xs font-black tracking-widest uppercase mb-4 inline-block shadow-sm">
+                        <i class="fas fa-desktop mr-1"></i>Bước 4: Thực Thi & Đo Lường
+                    </span>
+                    <h2 class="text-3xl font-black text-white font-heading mb-3">Bức Tranh Toàn Trình (CJM)</h2>
+                    <p class="text-slate-400 font-medium">Dashboard tracking: Chuyển dịch từ Đo lường Sản lượng sang
+                        Quản
+                        trị Hiệu suất trên Toàn bộ Hành trình khách hàng (CJM).</p>
+                </div>
+
+                <!-- HTML Report Mockup UI -->
+                <div
+                    class="bg-[#1e293b] rounded-2xl overflow-hidden shadow-2xl border border-slate-700 max-w-6xl mx-auto mb-20">
+                    <!-- Mockup Header -->
+                    <div class="bg-slate-800 border-b border-slate-700 p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-chart-pie text-[#facc15] text-xl"></i>
+                            <span class="font-bold font-heading text-sm tracking-wide text-white">QUẢN TRỊ TOÀN TRÌNH
+                                KHÁCH
+                                HÀNG</span>
+                        </div>
+                    </div>
+
+                    <!-- 4 Columns Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-0 bg-slate-900 p-2">
+
+                        <!-- COL 1: Post Purchase -->
+                        <div
+                            class="bg-slate-800 text-slate-200 m-2 rounded-xl border border-slate-600 flex flex-col opacity-90">
+                            <div class="bg-slate-700 text-white p-3 text-center rounded-t-lg">
+                                <h4 class="font-bold text-[11px] font-heading tracking-wide">1. POST PURCHASE</h4>
+                                <p class="text-[9px] mt-1 text-slate-300 font-medium italic">Mục tiêu: Kích hoạt nhanh
+                                    sau
+                                    mua</p>
+                            </div>
+                            <div class="p-4 flex-grow space-y-3">
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-tools text-slate-400 w-5"></i> Dịch vụ
+                                        Aftersales</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-star text-yellow-500 w-5"></i> Rating 4-5
+                                        Sao</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COL 2: Occasion -->
+                        <div
+                            class="bg-slate-800 text-slate-200 m-2 rounded-xl border border-slate-600 flex flex-col opacity-90">
+                            <div class="bg-blue-600 text-white p-3 text-center rounded-t-lg">
+                                <h4 class="font-bold text-[11px] font-heading tracking-wide">2. OCCASION</h4>
+                                <p class="text-[9px] mt-1 text-blue-200 font-medium italic">Mục tiêu: Mua đúng thời điểm
+                                </p>
+                            </div>
+                            <div class="p-4 flex-grow space-y-3">
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-birthday-cake text-pink-400 w-5"></i> Sinh
+                                        nhật
+                                        Khách hàng</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-calendar-alt text-orange-400 w-5"></i> Mua
+                                        theo
+                                        Mùa/ Dịp</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-gem text-yellow-400 w-5"></i> Sinh nhật
+                                        PNJ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COL 3: Loyalty (HIGHLIGHTED) -->
+                        <div
+                            class="bg-white text-slate-800 m-2 rounded-xl border-[3px] border-[#d4af37] relative overflow-hidden flex flex-col shadow-lg transform md:-translate-y-2 z-10">
+                            <div
+                                class="absolute top-0 right-0 bg-[#d4af37] text-white text-[8px] font-black px-4 py-0.5 transform rotate-45 translate-x-3 translate-y-1">
+                                FOCUS</div>
+                            <div class="bg-[#d4af37] text-white p-3 text-center">
+                                <h4 class="font-black text-[11px] font-heading tracking-wide">3. LOYALTY (CASH COW)</h4>
+                                <p class="text-[9px] mt-1 text-yellow-100 font-medium italic">Mục tiêu: Nuôi dưỡng khách
+                                    hàng VIP</p>
+                            </div>
+                            <div class="p-4 flex-grow space-y-3 bg-yellow-50/50">
+                                <div class="flex justify-between items-center border-b border-yellow-200 pb-2">
+                                    <span class="text-xs font-bold text-slate-800"><i
+                                            class="fas fa-crown text-yellow-600 w-5"></i> Welcome New Rank</span>
+                                    <span
+                                        class="text-[9px] font-black bg-white px-1 py-0.5 rounded border border-yellow-200">CR:
+                                        Max</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-yellow-200 pb-2">
+                                    <span class="text-xs font-bold text-slate-800"><i
+                                            class="fas fa-level-up-alt text-blue-500 w-5"></i> The Tier Up</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-yellow-200 pb-2">
+                                    <span class="text-xs font-bold text-slate-800"><i
+                                            class="fas fa-medal text-orange-500 w-5"></i> Champions</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-yellow-200 pb-2">
+                                    <span class="text-xs font-bold text-slate-800"><i
+                                            class="fas fa-credit-card text-green-600 w-5"></i> Cashless</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-yellow-200 pb-2">
+                                    <span class="text-xs font-bold text-red-600"><i
+                                            class="fas fa-exclamation-triangle text-red-500 w-5"></i> Warning to
+                                        Churn</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COL 4: Win-back -->
+                        <div
+                            class="bg-slate-800 text-slate-200 m-2 rounded-xl border border-slate-600 flex flex-col opacity-90">
+                            <div class="bg-slate-700 text-white p-3 text-center rounded-t-lg">
+                                <h4 class="font-bold text-[11px] font-heading tracking-wide">4. ACTIVATION & WIN-BACK
+                                </h4>
+                                <p class="text-[9px] mt-1 text-slate-300 font-medium italic">Mục tiêu: Mở rộng tệp có
+                                    khả
+                                    năng chuyển đổi</p>
+                            </div>
+                            <div class="p-4 flex-grow space-y-3">
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-bed text-slate-400 w-5"></i> Churn >
+                                        365d</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-shoe-prints text-blue-400 w-5"></i> Digital
+                                        Footprint</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-eye text-red-400 w-5"></i> Quan tâm đối
+                                        thủ</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-star text-yellow-300 w-5"></i> First
+                                        Experience</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-slate-600 pb-2">
+                                    <span class="text-xs"><i class="fas fa-magnet text-purple-400 w-5"></i> Lead từ
+                                        Digital</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- The Final Proof (Impact) -->
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#1e293b] p-8 md:p-12 rounded-3xl border border-slate-700">
+                    <div>
+                        <h3 class="text-3xl font-black text-white font-heading leading-tight mb-4">
+                            Lợi Nhuận Gia Tăng <br> (Incremental Profit)
+                        </h3>
+                        <p class="text-slate-400 font-medium mb-6">Chiến lược Omni-Growth: Tiếp cận <strong>đúng khách
+                                hàng</strong> tại thời điểm vàng <strong class="text-[#facc15]">kiến tạo dòng tiền
+                                mới</strong>, thay vì chỉ luân chuyển doanh thu sẵn có. Cách tiếp cận này giúp triệt
+                            tiêu
+                            rủi ro "tự xâm thực doanh thu" (Cannibalization), đảm bảo sự cân bằng giữa biên lợi nhuận
+                            mục
+                            tiêu và lộ trình tăng trưởng bền vững.</p>
+
+                        <div class="flex gap-4">
+                            <div class="bg-slate-800 border border-slate-600 p-4 rounded-xl flex-1 text-center">
+                                <i class="fas fa-chart-bar text-blue-400 text-2xl mb-2"></i>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Baseline
+                                </p>
+                                <p class="text-xl font-bold text-white">Khách tự mua</p>
+                            </div>
+                            <div
+                                class="bg-[#2a200a] border border-[#d4af37] p-4 rounded-xl flex-1 text-center relative overflow-hidden">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-tr from-transparent to-[#d4af37] opacity-10">
+                                </div>
+                                <i class="fas fa-rocket text-[#facc15] text-2xl mb-2 relative z-10"></i>
+                                <p
+                                    class="text-[10px] text-[#facc15] font-bold uppercase tracking-wider mb-1 relative z-10">
+                                    Incremental Lift</p>
+                                <p class="text-xl font-black text-[#d4af37] relative z-10">Tăng Trưởng 10-18%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart -->
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700">
+                        <div class="chart-container h-64">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- [BƯỚC 4] INTERNAL EMPOWERMENT -->
+        <!-- HEADER & STRATEGY HOUSE -->
+        <section id="internal-empowerment" class="pt-16 pb-20 bg-slate-50 border-b border-slate-200 relative">
+            <div class="absolute inset-0 opacity-[0.03]"
+                style="background-image: radial-gradient(#002d72 1px, transparent 1px); background-size: 24px 24px;">
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span
+                    class="bg-blue-100 text-[#002d72] border border-blue-200 px-4 py-1.5 rounded-full text-[11px] font-black tracking-widest uppercase mb-4 inline-block shadow-sm">
+                    <i class="fas fa-chess-knight mr-1"></i> BƯỚC 5: CHIẾN LƯỢC THỰC THI NỘI BỘ (INTERNAL EMPOWERMENT)
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 font-heading tracking-tight mb-4 mt-2">
+                    Ngôi Nhà Năng Lực <span class="text-[#002d72]">O2O PNJ</span> 2026
+                </h2>
+                <p class="text-slate-500 font-medium max-w-2xl mx-auto text-sm md:text-base mb-12">
+                    Định hình năng lực thực thi, tháo gỡ nút thắt hệ thống, biến Cửa
+                    hàng thành điểm chạm cá nhân hóa tối ưu nhất cho Khách Hàng Cũ.
+                </p>
+                <!-- STRATEGY HOUSE VISUAL -->
+                <div class="max-w-4xl mx-auto px-4">
+                    <!-- The Roof (Objective) -->
+                    <div
+                        class="relative w-full h-32 md:h-40 flex flex-col justify-end items-center pb-4 strategy-roof shadow-xl mb-3">
+                        <div
+                            class="text-[10px] md:text-xs font-bold text-blue-200 uppercase tracking-widest mb-1 opacity-80">
+                            Mục Tiêu Cốt Lõi (Objective)</div>
+                        <div
+                            class="text-lg md:text-2xl font-black text-white font-heading uppercase tracking-wide text-center px-8">
+                            Kiến Tạo Cố Vấn Tinh Hoa<br>Tăng Trưởng Bền Vững
+                        </div>
+                    </div>
+                    <!-- Architrave -->
+                    <div class="bg-[#d4af37] w-[96%] mx-auto h-4 shadow-md mb-6 rounded-sm"></div>
+                    <!-- The 3 Pillars (KRs) -->
+                    <div class="flex justify-between items-stretch gap-4 md:gap-8 w-[92%] mx-auto">
+                        <!-- Pillar 1 -->
+                        <div
+                            class="flex-1 bg-white border-2 border-[#002d72] rounded-lg shadow-lg flex flex-col items-center p-4 relative">
+                            <div class="absolute -top-3 bg-white px-2 text-[#002d72]"><i
+                                    class="fas fa-server text-xl"></i></div>
+                            <h3 class="font-black text-[#002d72] text-xs md:text-sm uppercase mb-2 mt-2 text-center">Trụ
+                                Cột 1:<br>Hạ Tầng &amp; Công Cụ</h3>
+                            <div class="w-full h-px bg-slate-200 my-2"></div>
+                            <p class="text-[9px] md:text-[10px] text-slate-500 text-center font-medium leading-tight">
+                                Tối ưu UI/UX &amp; Tự động hóa (Automation) luồng dữ liệu O2O trên MPOS/CRM để giảm tải
+                                thao tác cho Tiền tuyến.</p>
+                        </div>
+                        <!-- Pillar 2 -->
+                        <div
+                            class="flex-1 bg-white border-2 border-teal-600 rounded-lg shadow-lg flex flex-col items-center p-4 relative">
+                            <div class="absolute -top-3 bg-white px-2 text-teal-600"><i
+                                    class="fas fa-user-graduate text-xl"></i></div>
+                            <h3 class="font-black text-teal-700 text-xs md:text-sm uppercase mb-2 mt-2 text-center">Trụ
+                                Cột 2:<br>Đào Tạo &amp; Năng Lực</h3>
+                            <div class="w-full h-px bg-slate-200 my-2"></div>
+                            <p class="text-[9px] md:text-[10px] text-slate-500 text-center font-medium leading-tight">
+                                Giải quyết lỗ hổng thực hành. Training TVV năng lực đọc vị Data và Lắng nghe chủ động
+                                (Active Listening).</p>
+                        </div>
+                        <!-- Pillar 3 -->
+                        <div
+                            class="flex-1 bg-white border-2 border-orange-500 rounded-lg shadow-lg flex flex-col items-center p-4 relative">
+                            <div class="absolute -top-3 bg-white px-2 text-orange-500"><i
+                                    class="fas fa-hand-holding-usd text-xl"></i></div>
+                            <h3 class="font-black text-orange-600 text-xs md:text-sm uppercase mb-2 mt-2 text-center">
+                                Trụ Cột 3:<br>Cơ Chế &amp; Động Lực</h3>
+                            <div class="w-full h-px bg-slate-200 my-2"></div>
+                            <p class="text-[9px] md:text-[10px] text-slate-500 text-center font-medium leading-tight">
+                                Đồng bộ hóa lợi ích, xóa bỏ xung đột kênh. Chính sách ghi nhận O2O tạo động lực chốt
+                                sale mạnh mẽ.</p>
+                        </div>
+                    </div>
+                    <!-- Base / Foundation -->
+                    <div class="bg-slate-800 w-[96%] mx-auto h-6 shadow-md mt-6 rounded-t-sm"></div>
+                    <div
+                        class="bg-slate-900 w-full min-h-12 shadow-lg rounded-t-sm flex items-center justify-center p-3">
+                        <span
+                            class="text-white text-[10px] md:text-xs font-bold tracking-widest uppercase opacity-90 text-center leading-relaxed">
+                            Foundation: Tư Duy Lấy Khách Hàng Làm Trung Tâm (CX) &amp; Lắng Nghe Tiền Tuyến (Voice of
+                            Frontline)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HORIZONTAL 3 KEY RESULTS -->
+        <section class="py-16 bg-white border-b border-slate-200">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                    <!-- KR 01: Tool-set -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden flex flex-col">
+                        <div class="bg-gradient-to-r from-[#002d72] to-blue-600 p-6 text-white text-center relative">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl backdrop-blur-sm">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="font-black text-xl font-heading mb-1 uppercase tracking-wide">Key Result 01</h3>
+                            <p class="font-medium text-blue-200 text-sm">Hạ Tầng &amp; Công Cụ (Tool-set)</p>
+                        </div>
+                        <div class="p-6 flex-1 bg-slate-50 flex flex-col">
+                            <div class="text-center pb-4 border-b border-slate-200 mb-4">
+                                <p class="text-[13px] font-bold text-slate-700 italic">"Tối ưu hóa năng suất Tiền tuyến:
+                                    Ứng dụng Automation và tinh gọn UI/UX để triệt tiêu các thao tác rác, giải phóng quỹ
+                                    thời gian cho hoạt động tư vấn."</p>
+                            </div>
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Key Metrics
+                                Đo Lường</h4>
+                            <ul class="space-y-3 flex-1">
+                                <li
+                                    class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-[#002d72]">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Khảo sát Tiền Tuyến
+                                            (VOE)</span><i class="fas fa-comment-dots text-blue-600"></i></div>
+                                    <p class="text-[11px] text-slate-500">Chỉ số <strong>NPS Nội bộ</strong>: Đo lường
+                                        mức độ hài lòng của Cửa hàng về hệ thống công cụ O2O để khối IT/Digital chủ động
+                                        tháo gỡ nút thắt.</p>
+                                </li>
+                                <li class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">SLA Phản hồi &amp;
+                                            Automation</span><i class="fas fa-bolt text-green-500"></i></div>
+                                    <p class="text-[11px] text-slate-500">Tỷ lệ Lead (Zalo/Face) được phân bổ tự động và
+                                        xử lý đúng cam kết thời gian, loại bỏ việc rớt số do thủ công.</p>
+                                </li>
+                                <li class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Độ sâu khai thác công
+                                            cụ</span><i class="fas fa-layer-group text-purple-500"></i></div>
+                                    <p class="text-[11px] text-slate-500">Tỷ lệ % giao dịch có TVV truy vấn Insight/Thẻ
+                                        hạng 360 độ trên MPOS trước khi chốt sale.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- KR 02: Skill-set -->
+                    <div
+                        class="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden flex flex-col transform md:-translate-y-2">
+                        <div
+                            class="bg-gradient-to-r from-teal-600 to-emerald-500 p-6 text-white text-center relative shadow-inner">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl backdrop-blur-sm">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3 class="font-black text-xl font-heading mb-1 uppercase tracking-wide">Key Result 02</h3>
+                            <p class="font-medium text-teal-100 text-sm">Đào Tạo &amp; Năng Lực (Skill-set)</p>
+                            <div
+                                class="absolute top-0 right-0 bg-[#facc15] text-slate-900 text-[9px] font-black px-3 py-1 rounded-bl-lg uppercase">
+                                Core Focus</div>
+                        </div>
+                        <div class="p-6 flex-1 bg-white flex flex-col">
+                            <div class="text-center pb-4 border-b border-slate-200 mb-4">
+                                <p class="text-[13px] font-bold text-slate-700 italic">"Chuyển dịch vai trò: Từ 'Người
+                                    bán hàng' sang 'Người Bạn Đồng Hành', định hướng tư vấn dựa trên khả năng thấu hiểu
+                                    và lắng nghe khách hàng."</p>
+                            </div>
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Key Metrics
+                                Đo Lường</h4>
+                            <ul class="space-y-3 flex-1">
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-100 shadow-sm">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-teal-800 uppercase">Tăng Trưởng UPT &amp;
+                                            AOV</span><i class="fas fa-arrow-up text-green-500"></i></div>
+                                    <p class="text-[11px] text-slate-600">Đo lường năng lực Up-sell/Cross-sell trên tập
+                                        KHC, chứng minh khả năng tư vấn trúng Insight thay vì bị động phục vụ.</p>
+                                </li>
+                                <li class="bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Lắng nghe &amp;
+                                            Feedback ngược</span><i class="fas fa-sync-alt text-blue-500"></i></div>
+                                    <p class="text-[11px] text-slate-500">Khối lượng Insight/Pain-point thực tế của
+                                        khách hàng được TVV chủ động khai thác qua giao tiếp và cập nhật ngược lại vào
+                                        CRM.</p>
+                                </li>
+                                <li class="bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Chứng nhận "Cố Vấn
+                                            O2O"</span><i class="fas fa-certificate text-teal-600"></i></div>
+                                    <p class="text-[11px] text-slate-500">Tỷ lệ TVV đạt chứng nhận kỹ năng: Đọc hiểu
+                                        Data &amp; Ứng dụng thành thạo quy trình chăm sóc đa kênh (Omni-channel).</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- KR 03: Mechanism -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden flex flex-col">
+                        <div class="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white text-center relative">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl backdrop-blur-sm">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <h3 class="font-black text-xl font-heading mb-1 uppercase tracking-wide">Key Result 03</h3>
+                            <p class="font-medium text-orange-100 text-sm">Cơ Chế &amp; Động Lực (Mechanism)</p>
+                        </div>
+                        <div class="p-6 flex-1 bg-slate-50 flex flex-col">
+                            <div class="text-center pb-4 border-b border-slate-200 mb-4">
+                                <p class="text-[13px] font-bold text-slate-700 italic">"Đồng bộ hóa Lợi ích: Thiết lập
+                                    cơ chế ghi nhận O2O minh bạch nhằm triệt tiêu xung đột kênh (Channel Conflict), thúc
+                                    đẩy chuyển đổi tại điểm bán."</p>
+                            </div>
+                            <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Key Metrics
+                                Đo Lường</h4>
+                            <ul class="space-y-3 flex-1">
+                                <li
+                                    class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-orange-500">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Tỷ trọng Doanh thu
+                                            O2O</span><i class="fas fa-chart-pie text-orange-500"></i></div>
+                                    <p class="text-[11px] text-slate-500">Tỷ trọng doanh thu đến từ luồng khách Hội sở
+                                        đẩy xuống đóng góp vào tổng doanh thu Cửa hàng.</p>
+                                </li>
+                                <li class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex justify-between items-center mb-2"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Tỷ trọng
+                                            Non-Voucher</span><span
+                                            class="text-[9px] bg-green-100 text-green-700 font-bold px-1.5 py-0.5 rounded">Tăng
+                                            (YoY)</span></div>
+                                    <p class="text-[10px] text-slate-500 mb-2">Dịch chuyển chất lượng doanh thu, giảm tỷ
+                                        lệ chốt sale phụ thuộc vào Discount/Voucher làm xói mòn lợi nhuận.</p>
+                                    <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
+                                        <div class="h-full bg-red-400 w-[30%]"></div>
+                                        <div class="h-full bg-green-500 w-[70%]"></div>
+                                    </div>
+                                </li>
+                                <li class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex justify-between items-center mb-1"><span
+                                            class="text-[11px] font-bold text-slate-800 uppercase">Thi đua "Best Seller
+                                            KHC"</span><i class="fas fa-trophy text-[#facc15]"></i></div>
+                                    <p class="text-[11px] text-slate-500">Mức độ lan tỏa của các kỳ thi đua vinh danh
+                                        Tập thể/Cá nhân khai thác xuất sắc tệp Khách hàng cũ đa kênh.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPLEMENTATION MODELS: THE ENGINE & EXPLOIT/EXPLORE -->
+        <section class="py-20 bg-[#f8fafc] overflow-hidden border-b border-slate-200">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-4">
+                    <h2
+                        class="text-3xl md:text-4xl font-black text-slate-900 font-heading tracking-tight inline-block mx-auto uppercase">
+                        Hệ thống Tăng trưởng O2O <span class="block text-xl md:text-2xl text-[#002d72] mt-2">Hợp lực
+                            Chiến lược &amp; Thực thi</span>
+                    </h2>
+                </div>
+                <!-- CSS CAR ENGINE MODEL -->
+                <div class="relative w-full max-w-5xl mx-auto h-[380px] mt-10 mb-16 flex items-center justify-center">
+                    <!-- Road -->
+                    <div class="absolute bottom-10 left-[-20%] w-[140%] h-2 bg-slate-200 overflow-hidden rounded-full">
+                        <div class="road-stripe stripe-1"></div>
+                        <div class="road-stripe stripe-2"></div>
+                        <div class="road-stripe stripe-3"></div>
+                    </div>
+                    <!-- Destination Flag -->
+                    <div class="absolute right-0 bottom-12 flex flex-col items-center z-0 animate-pulse">
+                        <div class="w-1.5 h-40 bg-slate-300 rounded-t-full"></div>
+                        <div
+                            class="absolute top-2 right-1.5 w-40 bg-[#002d72] text-white text-[10px] font-bold p-3 rounded-l-xl rounded-br-xl shadow-[0_10px_20px_rgba(0,45,114,0.3)] border-2 border-blue-400 text-center">
+                            <i class="fas fa-flag-checkered mb-1.5 text-2xl text-[#facc15]"></i><br>
+                            <span class="uppercase tracking-widest text-[9px] text-blue-200 block mb-1">Đích Đến
+                                (Objective)</span>
+                            <span class="text-xs font-black leading-tight">Cố Vấn Tinh Hoa<br>Tăng Trưởng Bền
+                                Vững</span>
+                        </div>
+                    </div>
+                    <!-- The Car Body -->
+                    <div
+                        class="relative w-[650px] h-[220px] bg-white border-[6px] border-slate-300 rounded-3xl rounded-tr-[120px] rounded-tl-[50px] shadow-2xl flex items-center justify-center z-10 transform -translate-x-12">
+                        <!-- GPS -->
+                        <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+                            <div
+                                class="bg-blue-50 text-[#002d72] text-[11px] font-black uppercase tracking-wider px-5 py-2.5 rounded-2xl border-2 border-blue-300 shadow-md flex items-center gap-2">
+                                <i class="fas fa-compass text-xl text-blue-500 animate-pulse"></i> La Bàn: Chiến Lược
+                                External
+                            </div>
+                            <div class="w-1.5 h-6 bg-blue-300 mt-1"></div>
+                        </div>
+                        <!-- Fuel Tank -->
+                        <div class="absolute -left-12 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
+                            <div
+                                class="w-20 h-24 bg-slate-800 rounded-2xl flex items-center justify-center border-4 border-white shadow-xl text-[#facc15]">
+                                <i class="fas fa-gas-pump text-4xl"></i>
+                            </div>
+                            <div
+                                class="bg-white border-2 border-yellow-400 text-slate-800 text-[10px] font-black px-3 py-1.5 rounded-lg shadow-md mt-2 uppercase tracking-wide">
+                                Nhiên liệu: DATA</div>
+                            <div
+                                class="absolute top-1/2 left-full w-12 h-4 bg-slate-800 transform -translate-y-1/2 z-[-1]">
+                            </div>
+                        </div>
+                        <!-- Dashboard -->
+                        <div class="absolute top-6 right-12 flex flex-col items-center">
+                            <i class="fas fa-tachometer-alt text-4xl text-slate-300"></i>
+                            <span
+                                class="text-[9px] font-bold text-slate-600 uppercase mt-1.5 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200 shadow-sm">Dashboard:
+                                Metrics</span>
+                        </div>
+                        <!-- Engine Block -->
+                        <div
+                            class="relative w-[380px] h-[130px] bg-slate-900 rounded-2xl border-[6px] border-slate-700 shadow-[inset_0_10px_20px_rgba(0,0,0,0.5)] flex items-center justify-between p-3.5 mt-4">
+                            <div
+                                class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-slate-700 text-white text-[9px] font-black px-4 py-1 rounded-full tracking-widest uppercase border-2 border-slate-900 shadow-sm whitespace-nowrap">
+                                Hệ Trục Động Cơ Kép</div>
+                            <!-- Cylinder 1: Exploit -->
+                            <div
+                                class="w-[160px] h-full bg-gradient-to-br from-[#002d72] to-blue-800 rounded-xl border-2 border-blue-400 flex flex-col items-center justify-center relative shadow-[inset_0_0_20px_rgba(0,0,0,0.6)]">
+                                <i class="fas fa-cogs text-blue-300 text-4xl mb-2 animate-spin-slow"></i>
+                                <span class="text-white font-black text-sm uppercase tracking-wide">EXPLOIT</span>
+                                <span
+                                    class="text-blue-200 text-[8px] uppercase mt-1 font-bold bg-blue-900/50 px-2 py-0.5 rounded">Tối
+                                    ưu LTV Khách cũ</span>
+                            </div>
+                            <div class="text-[#facc15] text-2xl animate-pulse"><i class="fas fa-bolt"></i></div>
+                            <!-- Cylinder 2: Explore -->
+                            <div
+                                class="w-[160px] h-full bg-gradient-to-br from-[#d4af37] to-orange-600 rounded-xl border-2 border-yellow-300 flex flex-col items-center justify-center relative shadow-[inset_0_0_20px_rgba(0,0,0,0.4)]">
+                                <i class="fas fa-fan text-white text-4xl mb-2 animate-spin-fast"></i>
+                                <span class="text-white font-black text-sm uppercase tracking-wide">EXPLORE</span>
+                                <span
+                                    class="text-yellow-100 text-[8px] uppercase mt-1 font-bold bg-orange-900/50 px-2 py-0.5 rounded">Bộ
+                                    tăng áp (Turbo)</span>
+                            </div>
+                        </div>
+                        <!-- Exhaust -->
+                        <div
+                            class="absolute top-1/2 -right-8 w-8 h-10 bg-slate-400 border-y-4 border-r-4 border-slate-500 rounded-r-xl transform -translate-y-1/2 z-0">
+                        </div>
+                        <div
+                            class="absolute top-1/2 -right-16 text-slate-300 text-3xl transform -translate-y-1/2 animate-pulse">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <!-- Wheels -->
+                        <div
+                            class="absolute -bottom-14 left-16 w-24 h-24 bg-slate-800 rounded-full border-[6px] border-slate-300 flex items-center justify-center shadow-2xl">
+                            <div
+                                class="w-12 h-12 border-[6px] border-slate-500 rounded-full border-dashed animate-spin-slow">
+                            </div>
+                            <div class="absolute w-4 h-4 bg-slate-400 rounded-full"></div>
+                        </div>
+                        <div
+                            class="absolute -bottom-14 right-20 w-24 h-24 bg-slate-800 rounded-full border-[6px] border-slate-300 flex items-center justify-center shadow-2xl">
+                            <div
+                                class="w-12 h-12 border-[6px] border-slate-500 rounded-full border-dashed animate-spin-slow">
+                            </div>
+                            <div class="absolute w-4 h-4 bg-slate-400 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Explanation -->
+                <div class="text-center mb-20 max-w-4xl mx-auto">
+                    <div
+                        class="text-slate-700 text-[15px] leading-relaxed bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative text-left">
+                        <i class="fas fa-quote-left text-slate-100 text-5xl absolute top-4 left-4"></i>
+                        <p class="relative z-10 font-medium mb-4 text-center">Để cỗ máy O2O vận hành tối đa công suất,
+                            sự đồng nhất giữa <strong>Định hướng Chiến lược (La bàn)</strong> và <strong>Nguồn dữ liệu
+                                (Nhiên liệu)</strong> là điều kiện cần. Tuy nhiên, <strong>Năng lực thực thi tại cửa
+                                hàng</strong> mới là biến số quyết định vận tốc tăng trưởng.</p>
+                        <p class="relative z-10 font-bold text-center mb-4 text-[#002d72]">PNJ thiết lập Hệ trục Động cơ
+                            kép để bứt phá:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+                            <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl">
+                                <span class="font-black text-[#002d72] block mb-1">EXPLOIT</span>
+                                <span class="text-sm text-slate-600">Chuẩn hóa quy trình chăm sóc khách hàng hiện hữu
+                                    nhằm tối ưu hóa giá trị vòng đời (LTV).</span>
+                            </div>
+                            <div class="bg-yellow-50 border border-yellow-100 p-4 rounded-xl">
+                                <span class="font-black text-[#d4af37] block mb-1">EXPLORE</span>
+                                <span class="text-sm text-slate-600">Kích hoạt Social Selling, biến đội ngũ nhân sự
+                                    thành các "điểm chạm số" chủ động mở rộng phễu khách hàng.</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-quote-right text-slate-100 text-5xl absolute bottom-4 right-4"></i>
+                    </div>
+                </div>
+
+                <!-- EXPLOIT AND EXPLORE BLOCKS -->
+                <div class="text-center mb-12 flex flex-col items-center">
+                    <span
+                        class="bg-indigo-100 text-indigo-800 border border-indigo-200 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase mb-4 inline-block shadow-sm"><i
+                            class="fas fa-layer-group mr-1"></i> Core Execution</span>
+                    <h3
+                        class="text-3xl md:text-4xl font-black text-slate-900 font-heading tracking-tight mb-2 uppercase text-center">
+                        Chiến Lược Động Cơ Kép</h3>
+                    <div
+                        class="text-lg md:text-xl font-bold text-[#002d72] uppercase tracking-wide border-b-2 border-[#d4af37] pb-4 px-8 text-center">
+                        Tối Ưu Năng Lực Lõi &amp; Mở Rộng Ranh Giới</div>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 mb-12">
+                    <!-- ENGINE 1: EXPLOIT -->
+                    <div
+                        class="bg-white p-8 rounded-3xl border border-slate-200 card-shadow flex flex-col relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10"></div>
+                        <div class="flex items-start justify-between mb-6 border-b border-slate-100 pb-6">
+                            <div>
+                                <h3 class="font-black text-2xl text-[#002d72] font-heading mb-1">EXPLOIT <span
+                                        class="text-slate-300 mx-1">|</span> <span class="text-slate-700 text-lg">Tối Ưu
+                                        Năng Lực Lõi</span></h3>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wide">Inside the store:
+                                    Clienteling &amp; O2O SOPs</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-blue-100 text-[#002d72] rounded-2xl flex items-center justify-center text-2xl shadow-sm transform -rotate-6">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <p class="text-sm text-slate-600 font-medium leading-relaxed">Động cơ chính yếu: Chuẩn hóa
+                                năng lực phục vụ tệp KHC sẵn có. Đảm bảo mọi lead từ Digital đổ về đều được hứng trọn
+                                vẹn bằng quy trình chuẩn (SOP).</p>
+                        </div>
+                        <div class="space-y-4 relative mt-auto">
+                            <div class="absolute left-6 top-4 bottom-4 w-0.5 bg-blue-100"></div>
+                            <div
+                                class="flex items-center gap-4 relative z-10 hover:transform hover:translate-x-1 transition-transform">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-blue-200 rounded-full flex items-center justify-center text-blue-500 text-lg shrink-0 shadow-sm">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl flex-1 relative">
+                                    <div class="absolute top-2 right-2 flex gap-1"><span
+                                            class="text-[8px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold uppercase">Scale
+                                            2025</span><span
+                                            class="text-[8px] bg-[#002d72] text-white px-1.5 py-0.5 rounded font-bold uppercase">KR1</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-800 text-[11px] uppercase mb-0.5">1. Khai Thác Công
+                                        Cụ</h4>
+                                    <p class="text-[10px] text-slate-500 pr-16">Sử dụng MPOS tiếp nhận Lead, check lịch
+                                        sử VIP.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center gap-4 relative z-10 hover:transform hover:translate-x-1 transition-transform">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-blue-200 rounded-full flex items-center justify-center text-teal-600 text-lg shrink-0 shadow-sm">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl flex-1 relative">
+                                    <div class="absolute top-2 right-2 flex gap-1"><span
+                                            class="text-[8px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold uppercase">Scale
+                                            2025</span><span
+                                            class="text-[8px] bg-teal-600 text-white px-1.5 py-0.5 rounded font-bold uppercase">KR2</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-800 text-[11px] uppercase mb-0.5">2. Tư Vấn Cá Nhân
+                                        Hóa</h4>
+                                    <p class="text-[10px] text-slate-500 pr-16">Ứng dụng kỹ năng đọc vị,
+                                        Up-sell/Cross-sell theo Insight.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center gap-4 relative z-10 hover:transform hover:translate-x-1 transition-transform">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-blue-200 rounded-full flex items-center justify-center text-purple-600 text-lg shrink-0 shadow-sm">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="bg-purple-50/50 border border-purple-100 p-3 rounded-xl flex-1 relative">
+                                    <div class="absolute top-2 right-2 flex gap-1"><span
+                                            class="text-[8px] bg-red-100 text-red-800 px-1.5 py-0.5 rounded font-bold uppercase">R&amp;D
+                                            2026</span><span
+                                            class="text-[8px] bg-purple-600 text-white px-1.5 py-0.5 rounded font-bold uppercase">KR1,
+                                            2</span></div>
+                                    <h4 class="font-bold text-slate-800 text-[11px] uppercase mb-0.5">3. Người Bạn Đồng
+                                        Hành (Active Listening)</h4>
+                                    <p class="text-[10px] text-slate-500 pr-16">Lắng nghe Pain-points, cập nhật ngược
+                                        Data định tính vào CRM.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center gap-4 relative z-10 hover:transform hover:translate-x-1 transition-transform">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-blue-200 rounded-full flex items-center justify-center text-orange-500 text-lg shrink-0 shadow-sm">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl flex-1 relative">
+                                    <div class="absolute top-2 right-2 flex gap-1"><span
+                                            class="text-[8px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold uppercase">Scale
+                                            2025</span><span
+                                            class="text-[8px] bg-orange-500 text-white px-1.5 py-0.5 rounded font-bold uppercase">KR3</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-800 text-[11px] uppercase mb-0.5">4. Chốt Deal &amp;
+                                        Ghi Nhận</h4>
+                                    <p class="text-[10px] text-slate-500 pr-16">Hệ thống ghi nhận KPI O2O trực tiếp cho
+                                        TVV/Cửa hàng.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ENGINE 2: EXPLORE -->
+                    <div
+                        class="bg-slate-900 p-8 rounded-3xl border border-slate-700 card-shadow flex flex-col relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10"
+                            style="background-image: radial-gradient(#d4af37 1px, transparent 1px); background-size: 20px 20px;">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 w-48 h-48 bg-[#d4af37] rounded-tr-full opacity-[0.05] -z-0">
+                        </div>
+                        <div class="flex items-start justify-between mb-6 border-b border-slate-700 pb-6 relative z-10">
+                            <div>
+                                <h3 class="font-black text-2xl text-white font-heading mb-1">EXPLORE <span
+                                        class="text-slate-500 mx-1">|</span> <span class="text-[#facc15] text-lg">Mở
+                                        Rộng Ranh Giới</span></h3>
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wide">Outside the store:
+                                    Local KOC &amp; Social Selling</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-[#2a200a] text-[#facc15] rounded-2xl flex items-center justify-center text-2xl border border-[#d4af37] shadow-sm transform rotate-6">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                        </div>
+                        <div class="mb-6 relative z-10">
+                            <p class="text-sm text-slate-300 font-medium leading-relaxed">Bộ tăng áp Turbo: Biến Top 20%
+                                TVV xuất sắc thành <strong class="text-[#facc15]">"Đại sứ Thương hiệu Số" (Local
+                                    KOC)</strong>. Chủ động lan tỏa giá trị, kéo traffic từ Social về Cửa hàng thực tế.
+                            </p>
+                        </div>
+                        <div class="relative mt-auto flex justify-center py-2 z-10">
+                            <div class="grid grid-cols-2 gap-4 w-full">
+                                <div
+                                    class="bg-slate-800/80 border border-slate-600 p-4 rounded-2xl hover:border-teal-500 transition duration-300 relative group">
+                                    <div class="absolute top-2 right-2"><span
+                                            class="text-[8px] bg-red-100 text-red-800 px-1.5 py-0.5 rounded font-bold uppercase">R&amp;D
+                                            2026</span></div>
+                                    <div class="text-[#facc15] text-xl mb-2 group-hover:scale-110 transition"><i
+                                            class="fas fa-video"></i></div>
+                                    <h4 class="text-white text-[11px] font-bold uppercase mb-1">Sáng Tạo Nội Dung</h4>
+                                    <p class="text-[9px] text-slate-400">Livestream, quay TikTok mix-match trang sức tại
+                                        quầy.</p>
+                                </div>
+                                <div
+                                    class="bg-slate-800/80 border border-slate-600 p-4 rounded-2xl hover:border-teal-500 transition duration-300 relative group">
+                                    <div class="absolute top-2 right-2"><span
+                                            class="text-[8px] bg-red-100 text-red-800 px-1.5 py-0.5 rounded font-bold uppercase">R&amp;D
+                                            2026</span></div>
+                                    <div class="text-[#facc15] text-xl mb-2 group-hover:scale-110 transition"><i
+                                            class="fas fa-comments"></i></div>
+                                    <h4 class="text-white text-[11px] font-bold uppercase mb-1">Social Seeding</h4>
+                                    <p class="text-[9px] text-slate-400">Tương tác nhóm Local, gieo rắc nhu cầu (Pull
+                                        MKT).</p>
+                                </div>
+                                <div
+                                    class="col-span-2 bg-[#2a200a] border border-[#d4af37] p-4 rounded-2xl shadow-[0_0_15px_rgba(212,175,55,0.15)] relative overflow-hidden flex items-center justify-between">
+                                    <div class="flex items-center gap-3 relative z-10">
+                                        <div class="text-[#facc15] text-2xl"><i class="fas fa-magnet"></i></div>
+                                        <div>
+                                            <h4 class="text-[#facc15] text-[11px] font-bold uppercase mb-0.5">Chuyển Đổi
+                                                Nguồn Khách Mới</h4>
+                                            <p class="text-[9px] text-yellow-100">Kéo Followers thành Traffic thực tế
+                                                tới Cửa hàng.</p>
+                                        </div>
+                                    </div>
+                                    <div class="relative z-10 text-right">
+                                        <span
+                                            class="text-[8px] bg-orange-500 text-white px-1.5 py-0.5 rounded font-bold uppercase block mb-1">Mapping
+                                            KR3</span>
+                                        <p class="text-[9px] text-orange-400 font-bold"><i
+                                                class="fas fa-ruler-horizontal"></i> % DT O2O Cửa hàng tăng</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KEY SUCCESS & FAILURE FACTORS -->
+                <div class="mb-12">
+                    <h3 class="text-center font-black text-xl text-slate-800 font-heading mb-6 uppercase tracking-wide">
+                        <i class="fas fa-shield-alt text-[#002d72] mr-2"></i> Hệ Thống Cảnh Báo Sớm (KSFs &amp; KFFs)
+                    </h3>
+                    <p class="text-center text-xs text-slate-500 mb-8 max-w-2xl mx-auto">Thiết lập ranh giới rủi ro.
+                        Việc trang bị nhiều "vũ khí" Digital không phải là điểm mạnh nếu thiếu sự thấu hiểu Tiền tuyến.
+                        Tổ chức cần kiểm soát chặt chẽ các nút thắt vận hành sau:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-green-50 border border-green-200 rounded-2xl p-6 shadow-sm">
+                            <h4
+                                class="font-bold text-green-800 text-sm uppercase flex items-center mb-4 border-b border-green-200 pb-2">
+                                <i class="fas fa-check-circle text-green-600 mr-2 text-lg"></i> Yếu tố Thành công (KSFs)
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-200 text-green-800 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                                        1</div>
+                                    <div>
+                                        <p class="text-[11px] font-bold text-slate-800 uppercase">Voice of Frontline
+                                            (Lắng nghe TVV)</p>
+                                        <p class="text-[10px] text-slate-600 mt-0.5">Chủ động khảo sát, đo lường
+                                            <strong>NPS Nội bộ</strong>. Nhanh chóng gỡ bỏ các vướng mắc của Tiền tuyến
+                                            khi áp dụng tool mới.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-200 text-green-800 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                                        2</div>
+                                    <div>
+                                        <p class="text-[11px] font-bold text-slate-800 uppercase">Đồng bộ hóa Lợi ích
+                                        </p>
+                                        <p class="text-[10px] text-slate-600 mt-0.5">Cơ chế ghi nhận (KR3) minh bạch.
+                                            Thúc đẩy Cửa hàng trưởng là người "tài xế" điều phối Lead và chia số công
+                                            bằng cho nhân sự.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 rounded-2xl p-6 shadow-sm">
+                            <h4
+                                class="font-bold text-red-800 text-sm uppercase flex items-center mb-4 border-b border-red-200 pb-2">
+                                <i class="fas fa-exclamation-triangle text-red-600 mr-2 text-lg"></i> Yếu tố Rủi ro
+                                (KFFs)
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-red-200 text-red-800 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                                        1</div>
+                                    <div>
+                                        <p class="text-[11px] font-bold text-slate-800 uppercase">Tech Fatigue (Bội thực
+                                            công cụ)</p>
+                                        <p class="text-[10px] text-slate-600 mt-0.5">Nhồi nhét công nghệ nhưng thiếu
+                                            <strong>Automation</strong>, UI/UX rườm rà. Bắt TVV nhập liệu thủ công quá
+                                            nhiều sẽ sinh ra tâm lý chống đối ngầm.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-red-200 text-red-800 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                                        2</div>
+                                    <div>
+                                        <p class="text-[11px] font-bold text-slate-800 uppercase">Training Gap (Khoảng
+                                            trống Đào tạo)</p>
+                                        <p class="text-[10px] text-slate-600 mt-0.5">Sở hữu "vũ khí" nhưng thiếu huấn
+                                            luyện thực chiến. Cần chuyển từ việc "học lý thuyết" sang "coaching tại điểm
+                                            chạm" (Mô hình 70-20-10).</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HR & L&D SUPPORT: 70-20-10 -->
+                <div
+                    class="mt-8 bg-white border border-slate-200 rounded-2xl card-shadow p-6 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-[#002d72] to-[#facc15]"></div>
+                    <div class="shrink-0 text-center md:text-left md:w-1/4 z-10">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Nền tảng
+                            Đào Tạo</span>
+                        <h3 class="font-black text-slate-800 text-lg uppercase font-heading leading-tight">Mô Hình Học
+                            Tập<br><span class="text-blue-600">70-20-10</span></h3>
+                    </div>
+                    <div
+                        class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4 border-l-0 md:border-l border-slate-200 md:pl-6 z-10">
+                        <div>
+                            <div class="text-[#002d72] font-black text-xl mb-1">70%</div>
+                            <div class="text-[10px] font-bold text-slate-800 uppercase mb-1">Thực Hành &amp; Trải Nghiệm
+                            </div>
+                            <p class="text-[9px] text-slate-500">On-the-job training. Cửa hàng trưởng trực tiếp coaching
+                                TVV khai thác Dữ liệu &amp; Lắng nghe Khách hàng mỗi ngày.</p>
+                        </div>
+                        <div>
+                            <div class="text-teal-600 font-black text-xl mb-1">20%</div>
+                            <div class="text-[10px] font-bold text-slate-800 uppercase mb-1">Tương Tác Xã Hội</div>
+                            <p class="text-[9px] text-slate-500">Nhân rộng mô hình KOC. Chia sẻ Case-study thực tế giữa
+                                các Best Sellers toàn hệ thống.</p>
+                        </div>
+                        <div>
+                            <div class="text-orange-500 font-black text-xl mb-1">10%</div>
+                            <div class="text-[10px] font-bold text-slate-800 uppercase mb-1">Đào Tạo Căn Bản</div>
+                            <p class="text-[9px] text-slate-500">Học viện nội bộ: Cung cấp nền tảng kiến thức (Skill
+                                livestream, Đọc hiểu Data, Content Social).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /#report-container -->
+
+    <!-- Chart.js Implementations -->
+    <script>
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#94a3b8';
+
+        const ctxImpact = document.getElementById('impactChart').getContext('2d');
+        new Chart(ctxImpact, {
+            type: 'bar',
+            data: {
+                labels: ['2025', '2026', '2027'],
+                datasets: [
+                    {
+                        label: 'Baseline (Khách tự mua)',
+                        data: [100, 105, 110],
+                        backgroundColor: '#334155',
+                        borderRadius: { bottomLeft: 6, bottomRight: 6 },
+                        barPercentage: 0.5
+                    },
+                    {
+                        label: 'Incremental (Omni-Growth)',
+                        data: [15, 20, 28],
+                        backgroundColor: '#facc15',
+                        borderRadius: { topLeft: 6, topRight: 6 },
+                        barPercentage: 0.5
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#cbd5e1' } },
+                    y: { stacked: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { display: false }, border: { display: false } }
+                },
+                plugins: {
+                    legend: { position: 'top', labels: { color: '#e2e8f0', boxWidth: 10, usePointStyle: true, font: { size: 11 } } },
+                    tooltip: { mode: 'index', intersect: false, backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: 10, cornerRadius: 6 }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        async function downloadAsImage() {
+            const btn = document.querySelector('.btn-download');
+            let originalHTML = '';
+            if (btn) {
+                originalHTML = btn.innerHTML;
+                btn.classList.add('loading');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+            }
+
+            // Scroll to top so coordinates are clean before capture
+            window.scrollTo(0, 0);
+            await new Promise(r => setTimeout(r, 100));
+
+            try {
+                const target = document.getElementById('report-container') || document.body;
+
+                const canvas = await html2canvas(target, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: '#ffffff',
+                    scrollX: 0,
+                    scrollY: 0,
+                    logging: false,
+                    imageTimeout: 15000,
+                    onclone: (clonedDoc) => {
+                        // 1. Force nav to static so it sits at top with no sticky gap
+                        const nav = clonedDoc.querySelector('.nav-sticky') || clonedDoc.getElementById('omni-nav');
+                        if (nav) {
+                            nav.style.cssText = 'position:static !important; box-shadow:none; backdrop-filter:none; background-color:#ffffff;';
+                        }
+
+                        // 2. Hide the download button so it doesn't appear in the image
+                        const dlBtns = clonedDoc.querySelectorAll('.btn-download');
+                        dlBtns.forEach(b => b.style.display = 'none');
+
+                        // 3. Replace all external CDN logos with a CSS text fallback
+                        //    to bypass CORS restrictions that break canvas rendering
+                        clonedDoc.querySelectorAll('.nav-logo-img').forEach(img => {
+                            const replacement = clonedDoc.createElement('span');
+                            replacement.style.cssText = [
+                                'font-family:Inter,sans-serif',
+                                'font-weight:900',
+                                'font-size:22px',
+                                'color:#002d72',
+                                'letter-spacing:-0.04em',
+                                'line-height:1',
+                                'display:inline-flex',
+                                'align-items:center',
+                            ].join(';');
+                            replacement.textContent = 'PNJ';
+                            img.parentNode.replaceChild(replacement, img);
+                        });
+
+                        // 4. Fix .gradient-text: html2canvas cannot render -webkit-background-clip:text
+                        //    Replace with a solid color fallback to eliminate the blue rectangle bug
+                        const gradientTexts = clonedDoc.querySelectorAll('.gradient-text');
+                        gradientTexts.forEach(el => {
+                            el.style.background = 'none';
+                            el.style.webkitBackgroundClip = 'initial';
+                            el.style.webkitTextFillColor = 'initial';
+                            el.style.color = '#1e40af'; // PNJ Navy Light
+                        });
+                    }
+                });
+
+                const link = document.createElement('a');
+                link.download = 'PNJ-Omni-Growth-Report.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch (err) {
+                console.error('Lỗi tạo ảnh:', err);
+                alert('Đã có lỗi xảy ra khi tạo ảnh. Vui lòng thử lại.');
+            } finally {
+                if (btn) {
+                    btn.classList.remove('loading');
+                    btn.disabled = false;
+                    btn.innerHTML = originalHTML;
+                }
+            }
+        }
+    </script>
+
+    <!-- =============================================
+         NỘI DUNG TỪ INDEX 3 - BẢN ĐỒ TỌA ĐỘ O2O
+         ============================================= -->
+    <section
+        class="hidden max-w-[1200px] mx-auto bg-white p-6 md:p-12 rounded-3xl border border-slate-200 shadow-xl overflow-hidden relative my-8"
+        style="margin-left: auto; margin-right: auto;">
+
+        <!-- HEADER -->
+        <div class="text-center mb-10 relative z-10">
+            <span
+                class="bg-[#002d72]/10 text-[#002d72] border border-[#002d72]/20 px-4 py-1.5 rounded-full text-[11px] font-black tracking-widest uppercase mb-4 inline-block">
+                <i class="fas fa-chart-line mr-1"></i> Key Action 2026
+            </span>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 font-heading tracking-tight mb-4">
+                Bản Đồ Tọa Độ <span class="text-[#002d72]">O2O Maturity</span>
+            </h2>
+            <p class="text-slate-600 font-medium max-w-3xl mx-auto text-sm md:text-base">
+                Tăng trưởng bền vững: Sự cộng hưởng giữa <strong class="text-blue-600">Nền tảng hệ thống và Trải nghiệm
+                    khách hàng</strong>, lấy <strong class="text-orange-500">Sức khỏe vòng đời làm trọng tâm</strong>.
+            </p>
+        </div>
+
+        <!-- THE COORDINATE GRAPH -->
+        <div class="graph-wrapper">
+
+            <!-- FIXED Y Axis Label -->
+            <div class="y-axis-container">
+                <div
+                    class="y-axis-label text-[10px] md:text-xs font-black text-[#002d72] uppercase tracking-widest flex items-center gap-2">
+                    <i class="fas fa-server transform rotate-90"></i> Back-stage <span
+                        class="text-slate-400 font-medium normal-case tracking-normal">Năng lực Tiền tuyến &amp; Hệ
+                        thống</span>
+                </div>
+            </div>
+
+            <!-- X Axis Label -->
+            <div
+                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-[10px] md:text-xs font-black text-[#002d72] uppercase tracking-widest flex items-center gap-2">
+                Front-stage <i class="fas fa-bullhorn"></i> <span
+                    class="text-slate-400 font-medium normal-case tracking-normal hidden md:inline">Điểm chạm &amp; Trải
+                    nghiệm CX</span>
+            </div>
+
+            <!-- Graph Area -->
+            <div class="graph-container">
+
+                <div class="zone-bg zone-1"></div>
+                <div class="zone-bg zone-2"></div>
+                <div class="zone-bg zone-3"></div>
+                <div class="growth-path"></div>
+
+                <!-- THE TARGET (Top Right) -->
+                <div class="absolute top-0 right-0 transform translate-x-4 -translate-y-4 text-center z-20">
+                    <div
+                        class="w-20 h-20 bg-gradient-to-br from-[#d4af37] to-yellow-500 rounded-full flex items-center justify-center border-4 border-white shadow-[0_0_30px_rgba(212,175,55,0.4)] animate-pulse mx-auto mb-2">
+                        <i class="fas fa-crown text-3xl text-white"></i>
+                    </div>
+                    <div class="bg-white px-3 py-1.5 rounded-lg border border-yellow-200 shadow-md">
+                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-0.5">Mục Tiêu</p>
+                        <p class="text-xs font-black text-[#002d72] uppercase">Sức Khỏe Khách Hàng<br>(Customer Health)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- GIAI ĐOẠN 1: NỀN TẢNG (MÀU XÁM/SLATE) -->
+                <!-- ========================================== -->
+
+                <!-- 1. VOE (Đáy trái) -->
+                <div class="data-card" style="bottom: 12%; left: 18%;">
+                    <div class="bg-slate-50 border-2 border-slate-200 p-3 rounded-xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-slate-200 text-slate-600 flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-comment-dots"></i></span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[11px] mb-1">Khảo sát Tiền tuyến (VOE)</h4>
+                        <p class="text-[9px] text-slate-500">Đo lường NPS nội bộ. Lắng nghe và tháo gỡ nút thắt vận
+                            hành.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Aftersales VOC (Tịnh tiến lên phải) -->
+                <div class="data-card" style="bottom: 18%; left: 38%;">
+                    <div class="bg-slate-50 border-2 border-slate-200 p-3 rounded-xl shadow-sm">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-slate-200 text-slate-600 flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-star"></i></span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-[11px] mb-1">Dịch vụ Aftersales VOC</h4>
+                        <p class="text-[9px] text-slate-500">Ghi nhận phản hồi sau mua. Tự động phân luồng xử lý.</p>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- GIAI ĐOẠN 2: TỐI ƯU HÓA (MÀU XANH NAVY) -->
+                <!-- ========================================== -->
+
+                <!-- 3. Công cụ Digital (Mép trái) -->
+                <div class="data-card" style="bottom: 35%; left: 20%;">
+                    <div class="bg-blue-50 border-2 border-blue-200 p-3 rounded-xl shadow-md">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-blue-200 text-[#002d72] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-tablet-alt"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#002d72] text-[11px] mb-1">Khai thác Công cụ Digital</h4>
+                        <p class="text-[9px] text-slate-600">Ứng dụng công cụ Digital (FMB,ZMB, ...) và MPOS. Thấu hiểu
+                            chân dung và nhu cầu khách hàng.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Active Listening (KÉO VÀO LẤP KHOẢNG TRỐNG TRUNG TÂM) -->
+                <div class="data-card" style="bottom: 40%; left: 45%;">
+                    <div class="bg-blue-50 border-2 border-blue-200 p-3 rounded-xl shadow-md">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-blue-200 text-[#002d72] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-headphones-alt"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#002d72] text-[11px] mb-1">Người Bạn Đồng Hành</h4>
+                        <p class="text-[9px] text-slate-600">Thu thập Data định tính (Pain-points) và cập nhật ngược vào
+                            CDP.</p>
+                    </div>
+                </div>
+
+                <!-- 5. Local KOC & Social (Đỉnh của Giai đoạn 2) -->
+                <div class="data-card" style="bottom: 62%; left: 25%;">
+                    <div class="bg-blue-50 border-2 border-blue-200 p-3 rounded-xl shadow-md">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-blue-200 text-[#002d72] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-video"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#002d72] text-[11px] mb-1">Local KOC &amp; Social Selling</h4>
+                        <p class="text-[9px] text-slate-600">Mỗi TVV đều có thể là đại sứ. Thu hút traffic Mạng xã
+                            hội về Cửa hàng.</p>
+                    </div>
+                </div>
+
+                <!-- 6. Clienteling (Nghiêng về External) -->
+                <div class="data-card" style="bottom: 45%; left: 65%;">
+                    <div class="bg-blue-50 border-2 border-blue-200 p-3 rounded-xl shadow-md">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-blue-200 text-[#002d72] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-users"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#002d72] text-[11px] mb-1">Clienteling (RFM + CJM)</h4>
+                        <p class="text-[9px] text-slate-600">Thấu hiểu chân dung số - May đo trải nghiệm.</p>
+                    </div>
+                </div>
+
+                <!-- 7. Đánh chặn CIS (Sát trục X) -->
+                <div class="data-card" style="bottom: 25%; left: 72%;">
+                    <div class="bg-blue-50 border-2 border-blue-200 p-3 rounded-xl shadow-md">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-blue-200 text-[#002d72] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-shield-alt"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#002d72] text-[11px] mb-1">CIS &amp; Win-back</h4>
+                        <p class="text-[9px] text-slate-600">Phát hiện ý định rời bỏ để tung kịch bản Win-back.</p>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- GIAI ĐOẠN 3: ĐỘT PHÁ & DI SẢN (MÀU VÀNG/DARK) -->
+                <!-- ========================================== -->
+
+                <!-- 8. Dashboard CJM360 (NGỰ TRỊ KHU VỰC TRUNG TÂM GĐ 3) -->
+                <div class="data-card" style="bottom: 65%; left: 52%;">
+                    <div
+                        class="bg-[#fefce8] border-2 border-[#d4af37] p-3 rounded-xl shadow-md transform hover:scale-105">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-[#facc15]/30 text-[#b49020] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-chart-pie"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#b49020] text-[11px] mb-1">Dashboard Toàn Trình (CJM360)</h4>
+                        <p class="text-[9px] text-slate-700">Đo lường hiệu suất toàn trình khách hàng sau mua.</p>
+                    </div>
+                </div>
+
+                <!-- 9. Tư vấn Cá nhân hóa (ĐẨY LÊN GÓC TRÁI CAO, TRÁNH ĐÈ DASHBOARD) -->
+                <div class="data-card" style="bottom: 82%; left: 42%;">
+                    <div
+                        class="bg-[#fefce8] border-2 border-[#d4af37] p-3 rounded-xl shadow-md transform hover:scale-105">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-[#facc15]/30 text-[#b49020] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-magic"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#b49020] text-[11px] mb-1">Tư Vấn Data Insight</h4>
+                        <p class="text-[9px] text-slate-700">Chốt deal dựa trên thấu hiểu Insight cá nhân thay vì phụ
+                            thuộc vào chương trình khuyến mãi.</p>
+                    </div>
+                </div>
+
+                <!-- 10. Tín hiệu O2O (Góc phải) -->
+                <div class="data-card" style="bottom: 55%; left: 85%;">
+                    <div
+                        class="bg-[#fefce8] border-2 border-[#d4af37] p-3 rounded-xl shadow-md transform hover:scale-105">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span
+                                class="w-5 h-5 rounded bg-[#facc15]/30 text-[#b49020] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-wifi"></i></span>
+                        </div>
+                        <h4 class="font-bold text-[#b49020] text-[11px] mb-1">Tín Hiệu O2O (CJM360)</h4>
+                        <p class="text-[9px] text-slate-700">Giăng lưới Digital Footprint. Tự động kích hoạt điểm chạm
+                            khi khách phát sinh nhu cầu.</p>
+                    </div>
+                </div>
+
+                <!-- 11. Scoring Card (THE MOAT) -->
+                <div class="data-card" style="bottom: 85%; left: 72%;">
+                    <div
+                        class="bg-[#0f172a] border-2 border-[#d4af37] p-3.5 rounded-xl shadow-xl transform hover:scale-110">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span
+                                class="w-6 h-6 rounded-full bg-[#d4af37]/20 text-[#facc15] flex items-center justify-center text-[10px]"><i
+                                    class="fas fa-satellite-dish"></i></span>
+                        </div>
+                        <h4 class="font-black text-white text-[12px] mb-1 leading-tight">Customer Scoring Card</h4>
+                        <p class="text-[10px] text-slate-300">Chấm điểm sức khỏe Real-time. Cung cấp kịch bản cá nhân
+                            hóa tự động cho Tiền tuyến.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MÔ TẢ 3 GIAI ĐOẠN (EXECUTIVE SUMMARY - C-LEVEL WORDING) -->
+        <div class="mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <h3
+                class="text-sm font-black text-[#002d72] uppercase tracking-wide mb-4 text-center border-b border-slate-200 pb-3">
+                Tiến Trình Chuyển Đổi Năng Lực (Maturity Roadmap)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Phase 1 -->
+                <div class="relative">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-3 h-3 rounded-full bg-slate-400 shrink-0"></span>
+                        <h4 class="text-xs font-bold text-slate-800 uppercase">Giai Đoạn 1: Nền Tảng</h4>
+                    </div>
+                    <ul class="text-[11px] text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Tối ưu hạ tầng công cụ &amp; quy trình.</li>
+                        <li>Gỡ bỏ rào cản thao tác, tạo nền móng vận hành chuẩn cho Tiền tuyến.</li>
+                    </ul>
+                </div>
+                <!-- Phase 2 -->
+                <div class="relative md:border-l border-slate-200 md:pl-6">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-3 h-3 rounded-full bg-[#002d72] shrink-0"></span>
+                        <h4 class="text-xs font-bold text-[#002d72] uppercase">Giai Đoạn 2: Tối Ưu</h4>
+                    </div>
+                    <ul class="text-[11px] text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Xác định điểm chạm khách hàng, thấu hiểu chân dung, may đo trải nghiệm.</li>
+                        <li>Trao quyền Local KOC để chuyển hóa traffic Mạng xã hội thành doanh thu O2O.</li>
+                    </ul>
+                </div>
+                <!-- Phase 3 -->
+                <div class="relative md:border-l border-slate-200 md:pl-6">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-3 h-3 rounded-full bg-[#d4af37] shrink-0"></span>
+                        <h4 class="text-xs font-bold text-[#b49020] uppercase">Giai Đoạn 3: Đột Phá</h4>
+                    </div>
+                    <ul class="text-[11px] text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Dự báo điểm rơi mua hàng qua Customer Scoring Card.</li>
+                        <li>Trang bị kịch bản chốt sales cá nhân hóa hoàn toàn tự động (Data Insight).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script type="module" src="/components/layout.js"></script>
+</body>
+
+</html>

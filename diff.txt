@@ -1,0 +1,315 @@
+--- 01
++++ 02
+@@ -4,7 +4,7 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Monthly Report - Clienteling - 01.2026</title>
++    <title>Báo cáo Clienteling</title>
+     <link rel="icon" href="/Icon.png" type="image/png">
+     <meta property="og:title" content="Omni-Growth Workspace">
+     <meta property="og:image" content="https://omni-growth-2026.vercel.app/Logo.png">
+@@ -23,37 +23,36 @@
+ 
+         .card-glass {
+             background: white;
+-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
++            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+             border-radius: 16px;
+         }
+ 
+-        /* --- METRIC CARD STYLES --- */
+         .metric-card-clean {
+             background: white;
+             border-radius: 12px;
+-            padding: 16px;
+-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
++            padding: 20px 16px;
+             border: 1px solid #F1F5F9;
+-            border-top-width: 4px;
++            border-top: 4px solid #334155;
+             display: flex;
+             flex-direction: column;
++            align-items: center;
+             justify-content: flex-start;
++            height: 100%;
++            text-align: center;
++        }
++
++        .mc-title {
++            min-height: 32px;
++            display: flex;
+             align-items: center;
+-            text-align: center;
+-            height: 100%;
+-        }
+-
+-        .metric-card-clean:hover {
+-            transform: translateY(-2px);
+-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+-        }
+-
+-        /* Accent Colors */
+-        .accent-black {
+-            border-top-color: #334155;
+-        }
+-
+-        /* --- CJM COLUMN STYLES --- */
++            justify-content: center;
++            margin-bottom: 8px;
++        }
++
++        .mc-val {
++            margin-bottom: 8px;
++        }
++
+         .cjm-col {
+             background: white;
+             border-radius: 12px;
+@@ -61,8 +60,8 @@
+             display: flex;
+             flex-direction: column;
+             height: 100%;
++            border-top: 4px solid #1E293B;
+             overflow: hidden;
+-            border-top: 4px solid #1E293B;
+         }
+ 
+         .col-header {
+@@ -85,19 +84,17 @@
+             color: #64748B;
+         }
+ 
+-        /* Metric Grid inside Column (2x2) */
+         .col-metrics {
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             gap: 1px;
+             background: #F1F5F9;
+-            /* Gap color */
+             border-bottom: 1px solid #E2E8F0;
+         }
+ 
+         .cm-item {
+             background: #F8FAFC;
+-            padding: 6px;
++            padding: 6px 2px;
+             text-align: center;
+             display: flex;
+             flex-direction: column;
+@@ -105,35 +102,18 @@
+         }
+ 
+         .cm-lbl {
+-            font-size: 10px;
++            font-size: 9px;
+             color: #94A3B8;
+             text-transform: uppercase;
+             display: block;
+             margin-bottom: 2px;
+-            font-weight: 600;
++            font-weight: 700;
+         }
+ 
+         .cm-val {
+             font-size: 12px;
+             font-weight: 700;
+             color: #334155;
+-        }
+-
+-        /* Highlight Classes for Metrics (Green/Red for Max/Min) */
+-        .val-max {
+-            color: #15803d;
+-            background-color: #dcfce7;
+-            padding: 1px 4px;
+-            border-radius: 3px;
+-            display: inline-block;
+-        }
+-
+-        .val-min {
+-            color: #b91c1c;
+-            background-color: #fee2e2;
+-            padding: 1px 4px;
+-            border-radius: 3px;
+-            display: inline-block;
+         }
+ 
+         .col-body {
+@@ -144,49 +124,44 @@
+             gap: 6px;
+         }
+ 
+-        /* --- DETAIL CARDS --- */
+         .detail-card {
+             background: white;
+             border: 1px solid #E2E8F0;
+             border-radius: 6px;
+             padding: 8px;
+             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+-            transition: all 0.2s;
+-        }
+-
+-        .detail-card:hover {
+-            border-color: #CBD5E1;
+-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+-        }
+-
+-        /* Mini Metrics Grid inside Detail Card */
++        }
++
+         .card-metrics-grid {
+             display: grid;
+-            grid-template-columns: repeat(2, 1fr);
+-            gap: 4px;
+-            margin-top: 6px;
+-            padding-top: 6px;
++            grid-template-columns: repeat(4, 1fr);
++            gap: 2px;
++            margin-top: 8px;
++            padding-top: 8px;
+             border-top: 1px dashed #F1F5F9;
+         }
+ 
+         .mini-metric {
+             display: flex;
+-            justify-content: space-between;
++            flex-direction: column;
+             align-items: center;
+-            font-size: 10px;
++            text-align: center;
+         }
+ 
+         .mini-metric label {
+             color: #94A3B8;
+-            font-weight: 500;
++            font-weight: 600;
++            font-size: 9px;
++            text-transform: uppercase;
++            margin-bottom: 2px;
++            white-space: nowrap;
+         }
+ 
+         .mini-metric span {
+-            font-weight: bold;
+-            color: #334155;
+-        }
+-
+-        /* Status Badges */
++            font-size: 11px;
++            line-height: 1;
++        }
++
+         .status-badge {
+             font-size: 9px;
+             padding: 2px 6px;
+@@ -205,12 +180,11 @@
+             color: #1E40AF;
+         }
+ 
+-        .status-notyet {
++        .status-planning {
+             background: #F1F5F9;
+             color: #64748B;
+         }
+ 
+-        /* Team Badges (Neutral Gray) */
+         .team-badge {
+             font-size: 9px;
+             padding: 2px 5px;
+@@ -218,11 +192,11 @@
+             font-weight: 700;
+             margin-right: 4px;
+             background: #F1F5F9;
+-            color: #334155;
++            color: #475569;
+             border: 1px solid #E2E8F0;
+-        }
+-
+-        /* Timeline Split */
++            white-space: nowrap;
++        }
++
+         .timeline-split {
+             border-top: 2px dashed #E2E8F0;
+             margin-top: 8px;
+@@ -240,29 +214,9 @@
+             font-size: 10px;
+             color: #94A3B8;
+             font-weight: bold;
+-            text-transform: uppercase;
+-            border-radius: 4px;
+             border: 1px solid #E2E8F0;
+         }
+ 
+-        /* Colors for Columns */
+-        .text-indigo-theme {
+-            color: #4338CA;
+-        }
+-
+-        .text-green-theme {
+-            color: #047857;
+-        }
+-
+-        .text-orange-theme {
+-            color: #C2410C;
+-        }
+-
+-        .text-red-theme {
+-            color: #B91C1C;
+-        }
+-
+-        /* Month Header */
+         .month-header {
+             font-size: 11px;
+             font-weight: 700;
+@@ -274,7 +228,6 @@
+             text-transform: uppercase;
+             text-align: center;
+         }
+-
+         /* Download Button Styles */
+         #download-btn {
+             display: inline-flex;
+@@ -367,6 +320,15 @@
+         /* 1. Xử lý tên chương trình bị che/cắt */
+ 
+ 
++        .ppt-export-mode .mc-title p {
++            white-space: normal !important;
++            overflow: visible !important;
++            text-overflow: clip !important;
++            display: block !important;
++            font-size: 16px !important;
++            line-height: 1.3 !important;
++        }
++
+         /* 2. Xử lý nhãn số liệu quá to gây rớt dòng */
+         .ppt-export-mode .card-metrics-grid {
+             gap: 4px !important;
+@@ -420,7 +382,6 @@
+             margin-bottom: 24px !important;
+         }
+     </style>
+-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+ </head>
+ 
+ <body class="bg-slate-100 selection:bg-blue-200 selection:text-blue-900">
+@@ -438,7 +399,7 @@
+                         <span
+                             class="bg-indigo-600 text-white text-[12px] font-bold px-2 py-1 rounded uppercase">Dashboard</span>
+                         <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i> Tháng
+-                            1/2026 (Time range: 01/01 - 31/01/2026)</span>
++                            2/2026 (Time range: 01/02 - 28/02/2026)</span>
+                     </div>
+                     <h1 class="text-[26px] font-bold text-slate-800 tracking-tight uppercase">Clienteling</h1>
+                     <p class="text-slate-500 text-base mt-1">Theo dõi hiệu quả toàn trình & Tác động tăng trưởng (Growth
+@@ -447,4 +408,8 @@
+             </div>
+         </div>
+ 
+-        <!-- SECTION 1: KPI & ATTRIBUTION -->
++        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
++            <div class="card-glass p-6 lg:col-span-4 flex flex-col justify-center bg-white">
++                <h3 class="text-slate-600 text-sm font-bold uppercase mb-4 border-b pb-2">Tiến độ KHC 2026 (YTD)</h3>
++                <div class="flex items-center gap-6">
++                    <div class="w-1/2 relative h-32">

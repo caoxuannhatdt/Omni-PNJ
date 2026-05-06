@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Clienteling</title>
+    <link rel="icon" href="/Icon.png" type="image/png">
+    <meta property="og:title" content="Omni-Growth Workspace">
+    <meta property="og:image" content="https://omni-growth-2026.vercel.app/Logo.png">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+
+        .card-glass {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+        }
+
+        .metric-card-clean {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 16px;
+            border: 1px solid #F1F5F9;
+            border-top: 4px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            text-align: center;
+        }
+
+        .mc-title {
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .mc-val {
+            margin-bottom: 8px;
+        }
+
+        .cjm-col {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-top: 4px solid #1E293B;
+            overflow: hidden;
+        }
+
+        .col-header {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .col-title {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            color: #1E293B;
+        }
+
+        .col-goal {
+            font-size: 11px;
+            font-style: italic;
+            color: #64748B;
+        }
+
+        .col-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #F1F5F9;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .cm-item {
+            background: #F8FAFC;
+            padding: 6px 2px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cm-lbl {
+            font-size: 9px;
+            color: #94A3B8;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .cm-val {
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .col-body {
+            padding: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .detail-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #F1F5F9;
+        }
+
+        .mini-metric {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .mini-metric label {
+            color: #94A3B8;
+            font-weight: 600;
+            font-size: 9px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            white-space: nowrap;
+        }
+
+        .mini-metric span {
+            font-size: 11px;
+            line-height: 1;
+        }
+
+        .status-badge {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-done {
+            background: #DCFCE7;
+            color: #166534;
+        }
+
+        .status-processing {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .status-planning {
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .team-badge {
+            font-size: 9px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 700;
+            margin-right: 4px;
+            background: #F1F5F9;
+            color: #475569;
+            border: 1px solid #E2E8F0;
+            white-space: nowrap;
+        }
+
+        .timeline-split {
+            border-top: 2px dashed #E2E8F0;
+            margin-top: 8px;
+            padding-top: 12px;
+            position: relative;
+        }
+
+        .timeline-label {
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 6px;
+            font-size: 10px;
+            color: #94A3B8;
+            font-weight: bold;
+            border: 1px solid #E2E8F0;
+        }
+
+        .month-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+            background: #F1F5F9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        /* Download Button Styles */
+        #download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #002d72, #1e40af);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 45, 114, 0.25);
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        #download-btn:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            box-shadow: 0 6px 20px rgba(0, 45, 114, 0.35);
+            transform: translateY(-1px);
+        }
+
+        #download-btn.loading {
+            opacity: 0.75;
+            cursor: wait;
+        }
+
+        #download-btn .spinner {
+            display: none;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin-slow 0.7s linear infinite;
+        }
+
+        #download-btn.loading .spinner {
+            display: inline-block;
+        }
+
+        #download-btn.loading .btn-icon {
+            display: none;
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* PPT Export Mode Styles */
+        .ppt-export-mode {
+            width: 2560px !important;
+            padding: 40px !important;
+            background: #F8FAFC;
+        }
+
+        /* Ép cấu trúc dàn ngang 70% - 30% */
+        .ppt-export-mode .export-layout-wrapper {
+            flex-direction: row !important;
+            align-items: flex-start !important;
+        }
+
+        .ppt-export-mode .export-main-content {
+            width: 75% !important;
+        }
+
+        .ppt-export-mode .export-side-charts {
+            width: 25% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 24px !important;
+            margin-top: 56px !important;
+        }
+
+        .ppt-export-mode .export-side-charts>div.grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 24px !important;
+        }
+
+        /* 1. Xử lý tên chương trình bị che/cắt */
+
+
+        .ppt-export-mode .mc-title p {
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: clip !important;
+            display: block !important;
+            font-size: 16px !important;
+            line-height: 1.3 !important;
+        }
+
+        /* 2. Xử lý nhãn số liệu quá to gây rớt dòng */
+        .ppt-export-mode .card-metrics-grid {
+            gap: 4px !important;
+        }
+
+        .ppt-export-mode .mini-metric label {
+            white-space: nowrap !important;
+            font-size: 12px !important;
+            letter-spacing: -0.2px !important;
+            margin-bottom: 4px !important;
+        }
+
+        .ppt-export-mode .mini-metric span {
+            font-size: 18px !important;
+        }
+
+        .ppt-export-mode .cm-lbl {
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: clip !important;
+            display: block !important;
+            font-size: 14px !important;
+        }
+
+        .ppt-export-mode .cm-val {
+            font-size: 20px !important;
+        }
+
+        /* Mở khóa chiều cao cho cột, cho phép cột dãn thoải mái theo nội dung */
+        .ppt-export-mode .cjm-col {
+            height: auto !important;
+            min-height: 100% !important;
+            overflow: visible !important;
+        }
+
+        .ppt-export-mode .col-body {
+            height: auto !important;
+            overflow: visible !important;
+            gap: 12px !important;
+        }
+
+        /* Cấm bóp xẹp (shrink) các card chi tiết */
+        .ppt-export-mode .detail-card {
+            height: auto !important;
+            flex-shrink: 0 !important;
+            padding: 12px !important;
+        }
+
+        /* Fix nhẹ cho phần Header để nó cân đối hơn với chiều ngang mới */
+        .ppt-export-mode .card-glass.mb-6 {
+            margin-bottom: 24px !important;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 selection:bg-blue-200 selection:text-blue-900">
+    <div id="global-nav"></div>
+    <script src="/components/layout.js"></script>
+    <div id="report-container" class="p-4 md:p-6 bg-slate-100 w-full overflow-hidden">
+
+        <!-- HEADER BLOCK -->
+        <div class="card-glass p-6 mb-6 flex flex-col md:flex-row justify-between items-center bg-white">
+            <div class="flex items-center gap-5">
+                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/01/Logo-PNJ.png" alt="PNJ Logo"
+                    class="h-14 w-auto object-contain">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span
+                            class="bg-indigo-600 text-white text-[12px] font-bold px-2 py-1 rounded uppercase">Dashboard</span>
+                        <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i> Tháng
+                            2/2026 (Time range: 01/02 - 28/02/2026)</span>
+                    </div>
+                    <h1 class="text-[26px] font-bold text-slate-800 tracking-tight uppercase">Clienteling</h1>
+                    <p class="text-slate-500 text-base mt-1">Theo dõi hiệu quả toàn trình & Tác động tăng trưởng (Growth
+                        Impact)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+            <div class="card-glass p-6 lg:col-span-4 flex flex-col justify-center bg-white">
+                <h3 class="text-slate-600 text-sm font-bold uppercase mb-4 border-b pb-2">Tiến độ KHC 2026 (YTD)</h3>
+                <div class="flex items-center gap-6">
+                    <div class="w-1/2 relative h-32">
+                        <canvas id="gaugeChart"></canvas>
+                        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center w-full">
+                            <span class="text-[32px] font-bold text-slate-800 block leading-none">28.94%</span>
+                            <span class="text-[12px] text-slate-400 uppercase font-bold mt-1 block">HOÀN THÀNH</span>
+                        </div>
+                    </div>
+                    <div class="w-1/2 space-y-4 text-right">
+                        <div>
+                            <p class="text-[12px] text-slate-400 uppercase font-semibold">Thực đạt</p>
+                            <p class="text-[26px] font-bold text-slate-800 leading-none">184,739</p>
+
+                            <span
+                                class="text-[12px] font-bold px-2 py-0.5 rounded mt-1 inline-block bg-red-50 text-red-500">▼
+                                5.61% SSCK</span>
+                        </div>
+                        <div>
+                            <p class="text-[12px] text-slate-400 uppercase font-semibold">Target</p>
+                            <p class="text-[22px] font-bold text-slate-400 leading-none">638,138</p>
+
+                            <span
+                                class="text-[12px] font-bold px-2 py-0.5 rounded mt-1 inline-block bg-emerald-50 text-emerald-600">▲
+                                11.7% SSCK</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="mt-4 pt-3 border-t border-slate-100 text-[13px] text-slate-500 italic leading-relaxed text-center">
+                    Tính đến hết 28/02/2026: Đạt 184,739 khách hàng cũ giao dịch - bằng 28.9% target năm (Tiến độ thời
+                    gian: 16.2%).</div>
+            </div>
+
+            <div class="card-glass p-6 lg:col-span-8 flex flex-col justify-center bg-white">
+                <div class="flex justify-between items-center mb-6 pb-2 border-b">
+                    <h3 class="text-slate-600 text-sm font-bold uppercase">HIỆU QUẢ CHƯƠNG TRÌNH KHÁCH HÀNG CŨ - THÁNG
+                        2/2026 - CHI NHÁNH HỒ CHÍ MINH</h3>
+                </div>
+                <div class="grid grid-cols-3 gap-4 h-full">
+
+                    <div class="metric-card-clean accent-black">
+                        <div class="mc-title">
+                            <p class="text-[12px] text-slate-500 uppercase font-bold tracking-wide leading-tight">SLKH
+                                Chăm sóc</p>
+                        </div>
+                        <p class="mc-val text-[26px] font-bold text-slate-800">
+                            193,454</p>
+                        <p class="text-[11px] text-slate-500 font-medium leading-tight px-1"></p>
+                    </div>
+
+                    <div class="metric-card-clean accent-black">
+                        <div class="mc-title">
+                            <p class="text-[12px] text-slate-500 uppercase font-bold tracking-wide leading-tight">SLKHC
+                                Giao dịch</p>
+                        </div>
+                        <p class="mc-val text-[26px] font-bold text-orange-600">
+                            12,736</p>
+                        <p class="text-[11px] text-slate-500 font-medium leading-tight px-1">Đóng góp 31.49% trên tổng số
+                            lượng khách hàng cũ giao dịch trong tháng 02/2026 thuộc chi nhánh Hồ Chí Minh</p>
+                    </div>
+
+                    <div class="metric-card-clean accent-black">
+                        <div class="mc-title">
+                            <p class="text-[12px] text-slate-500 uppercase font-bold tracking-wide leading-tight">CR
+                                Trung bình</p>
+                        </div>
+                        <p class="mc-val text-[26px] font-bold text-slate-800">
+                            6.58%</p>
+                        <p class="text-[11px] text-slate-500 font-medium leading-tight px-1"></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-[22px] font-bold text-slate-800 flex items-center mb-6">
+            <span class="w-1.5 h-8 bg-indigo-600 rounded-full mr-3"></span>
+            Quản trị toàn trình khách hàng tháng 2 & Kế hoạch tháng 3
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10 items-start">
+
+            <div class="cjm-col">
+                <div class="col-header">
+                    <div class="col-title">1. Post Purchase / Aftersales: Service</div>
+                    <p class="col-goal">Kích hoạt nhanh lần mua tiếp theo</p>
+                </div>
+                <div class="col-metrics">
+                    <div class="cm-item"><span class="cm-lbl">SLKH Chăm sóc</span><span class="cm-val">2,576</span>
+                    </div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">SLKH Giao dịch</span>
+                        <span class="cm-val text-red-400 font-bold">323</span>
+                    </div>
+                    <div class="cm-item"><span class="cm-lbl">Doanh Thu</span><span class="cm-val">21.4 Tỷ</span></div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">CR%</span>
+                        <span class="cm-val text-emerald-500 font-extrabold">12.54%</span>
+                    </div>
+                </div>
+                <div class="col-body">
+                    <div class="month-header">Tháng 2</div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Aftersales: Đánh Bóng">Aftersales: Đánh Bóng</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">2,576</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">323</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">21.4
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">12.54%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Rating 4-5 Sao">Rating 4-5 Sao</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-CS</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">TBU</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">TBU</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span
+                                    class="font-bold text-slate-600">TBU</span></div>
+                            <div class="mini-metric"><label>CR%</label><span class="font-bold text-slate-600">TBU</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="cjm-col">
+                <div class="col-header">
+                    <div class="col-title">2. Occasion</div>
+                    <p class="col-goal">Tạo nhu cầu mua tự nhiên</p>
+                </div>
+                <div class="col-metrics">
+                    <div class="cm-item"><span class="cm-lbl">SLKH Chăm sóc</span><span class="cm-val">97,335</span>
+                    </div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">SLKH Giao dịch</span>
+                        <span class="cm-val text-emerald-500 font-extrabold">6,047</span>
+                    </div>
+                    <div class="cm-item"><span class="cm-lbl">Doanh Thu</span><span class="cm-val">167.7 Tỷ</span></div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">CR%</span>
+                        <span class="cm-val text-indigo-700 font-bold">6.21%</span>
+                    </div>
+                </div>
+                <div class="col-body">
+                    <div class="month-header">Tháng 2</div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3" title="Thần Tài 2026">Thần
+                                Tài 2026</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">58,871</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">3,308</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">87.5
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">5.62%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Valentine 2026">Valentine 2026</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">38,464</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">2,739</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">80.2
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">7.12%</span></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="cjm-col">
+                <div class="col-header">
+                    <div class="col-title">3. Loyalty Value</div>
+                    <p class="col-goal">Nuôi dưỡng khách hàng giá trị</p>
+                </div>
+                <div class="col-metrics">
+                    <div class="cm-item"><span class="cm-lbl">SLKH Chăm sóc</span><span class="cm-val">69,360</span>
+                    </div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">SLKH Giao dịch</span>
+                        <span class="cm-val text-slate-700 font-bold">4,218</span>
+                    </div>
+                    <div class="cm-item"><span class="cm-lbl">Doanh Thu</span><span class="cm-val">139.1 Tỷ</span></div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">CR%</span>
+                        <span class="cm-val text-red-400 font-bold">6.08%</span>
+                    </div>
+                </div>
+                <div class="col-body">
+                    <div class="month-header">Tháng 2</div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Sinh nhật KH T02">Sinh nhật KH T02</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-CX</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">51,551</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">2,483</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">70
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">4.82%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Champions (RFM)">Champions (RFM)</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">4,831</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">823</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">24.8
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">17.04%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Retention Cận VIP">Retention Cận VIP</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">6,151</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">317</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">11.1
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">5.15%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3" title="No Cash">No
+                                Cash</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">3,217</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">205</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">17.2
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">6.37%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3" title="Top Online">Top
+                                Online</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">2,533</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">203</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">9.4
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">8.01%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Welcome New Rank">Welcome New Rank</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-CX</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">1,077</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">187</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">6.6
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">17.36%</span></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="cjm-col">
+                <div class="col-header">
+                    <div class="col-title">4. Activation & Win-Back</div>
+                    <p class="col-goal">Mở rộng tệp chuyển đổi</p>
+                </div>
+                <div class="col-metrics">
+                    <div class="cm-item"><span class="cm-lbl">SLKH Chăm sóc</span><span class="cm-val">7,811</span>
+                    </div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">SLKH Giao dịch</span>
+                        <span class="cm-val text-slate-700 font-bold">538</span>
+                    </div>
+                    <div class="cm-item"><span class="cm-lbl">Doanh Thu</span><span class="cm-val">12.9 Tỷ</span></div>
+                    <div class="cm-item">
+                        <span class="cm-lbl">CR%</span>
+                        <span class="cm-val text-indigo-700 font-bold">6.89%</span>
+                    </div>
+                </div>
+                <div class="col-body">
+                    <div class="month-header">Tháng 2</div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Tương Tác Digital">Tương Tác Digital</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">4,596</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">482</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">8.8
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">10.49%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[12px] font-bold text-slate-800 truncate w-2/3"
+                                title="Churn (>365 ngày chưa giao dịch)">Churn (>365 ngày chưa giao dịch)</span>
+                            <div class="flex items-center">
+                                <span class="team-badge">Omni-Growth</span>
+                                <span class="status-badge status-processing">PROCESSING</span>
+                            </div>
+                        </div>
+                        <div class="card-metrics-grid">
+                            <div class="mini-metric"><label>SL Chăm sóc</label><span
+                                    class="font-bold text-slate-600">3,215</span></div>
+                            <div class="mini-metric"><label>SL Giao dịch</label><span
+                                    class="font-bold text-slate-600">56</span></div>
+                            <div class="mini-metric"><label>Doanh Thu</label><span class="font-bold text-slate-600">4.1
+                                    Tỷ</span></div>
+                            <div class="mini-metric"><label>CR%</label><span
+                                    class="font-bold text-slate-600">1.74%</span></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="card-glass p-6">
+                <h3 class="text-slate-700 text-sm font-bold uppercase mb-4">Đóng góp SLKHC giao dịch TRONG THÁNG 2/2026
+                </h3>
+                <div class="h-64 relative"><canvas id="contributionStackChart"></canvas></div>
+            </div>
+            <div class="card-glass p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-slate-700 text-sm font-bold uppercase">Hiệu quả Chuyển đổi (CR%) TRONG THÁNG 2/2026
+                    </h3>
+                    <div class="text-[12px] text-slate-500 font-medium"><span
+                            class="inline-block w-4 h-0.5 bg-indigo-600 border-t border-dashed border-indigo-600 align-middle mr-1"></span>(---
+                        CR% trung bình)</div>
+                </div>
+                <div class="h-64"><canvas id="branchCRChart"></canvas></div>
+            </div>
+        </div>
+
+        <script>
+            Chart.register(ChartDataLabels);
+
+            // Gauge
+            const pctCompleted = 28.939999999999998;
+            const gaugeData = [pctCompleted, Math.max(0, 100 - pctCompleted)];
+            new Chart(document.getElementById('gaugeChart'), {
+                type: 'doughnut',
+                data: { labels: ['Đạt', 'Còn lại'], datasets: [{ data: gaugeData, backgroundColor: ['#4F46E5', '#E2E8F0'], borderWidth: 0, circumference: 180, rotation: 270, cutout: '85%', borderRadius: 10 }] },
+                options: { plugins: { legend: false, tooltip: false, datalabels: { display: false } }, responsive: true, maintainAspectRatio: false }
+            });
+
+            // Stacked Chart
+            new Chart(document.getElementById('contributionStackChart'), {
+                type: 'bar',
+                data: { labels: [["H\u1ed3 Ch\u00ed Minh", "(-4.88% SSCK)"], ["Mi\u1ec1n B\u1eafc", "(+7.2% SSCK)"], ["\u0110\u00f4ng Nam B\u1ed9", "(+3.84% SSCK)"], ["Mi\u1ec1n T\u00e2y", "(+16.58% SSCK)"], ["Mi\u1ec1n Trung", "(+7.12% SSCK)"], ["T\u00e2y Nguy\u00ean", "(+5.52% SSCK)"]], datasets: [{ label: 'KHC', data: [12736.0, 6021.0, 4678.0, 4352.0, 4004.0, 3175.0], backgroundColor: '#F97316', stack: '0' }, { label: 'Other', data: [27707.0, 18649.0, 10925.0, 13138.0, 9722.0, 7670.0], backgroundColor: '#CBD5E1', stack: '0' }] },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true, display: true,
+                            ticks: {
+                                font: { size: 9, weight: 'bold' },
+                                color: (ctx) => {
+                                    const lbl = ctx.chart.data.labels[ctx.index];
+                                    if (Array.isArray(lbl) && lbl.length > 1) {
+                                        const growStr = lbl[1];
+                                        if (growStr.includes('+') || growStr.includes('▲')) return '#16A34A';
+                                        if (growStr.includes('-') || growStr.includes('▼')) return '#EF4444';
+                                    }
+                                    return '#64748B';
+                                }
+                            }
+                        },
+                        y: { stacked: true, display: true }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        datalabels: {
+                            display: true, color: 'white', font: { weight: 'bold', size: 9 },
+                            formatter: (v, ctx) => {
+                                if (ctx.datasetIndex === 1) return '';
+                                let sum = 0; ctx.chart.data.datasets.map(ds => ds.data[ctx.dataIndex]).forEach(d => sum += d);
+                                return sum === 0 ? '' : (v * 100 / sum).toFixed(0) + "%";
+                            }
+                        }
+                    }
+                }
+            });
+
+            // CR Chart
+            // [LOGIC MỚI] Tính toán Max Y-axis + 2% Buffer
+            const crLabels = ["Mi\u1ec1n T\u00e2y", "H\u1ed3 Ch\u00ed Minh", "\u0110\u00f4ng Nam B\u1ed9", "T\u00e2y Nguy\u00ean", "Mi\u1ec1n Trung", "Mi\u1ec1n B\u1eafc"];
+            const crValues = [6.81, 6.58, 6.5, 6.2700000000000005, 5.82, 4.66];
+            const normVal = 5.63;
+            const maxCrVal = Math.max(...crValues);
+            const yAxisMax = Math.ceil(maxCrVal + 2); // Buffer 2% và làm tròn lên số nguyên
+
+            new Chart(document.getElementById('branchCRChart'), {
+                type: 'bar',
+                data: {
+                    labels: crLabels,
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: 'Norm',
+                            data: Array(crLabels.length).fill(normVal),
+                            borderColor: '#4F46E5',
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            datalabels: { display: false }
+                        },
+                        {
+                            type: 'bar',
+                            label: 'CR%',
+                            data: crValues,
+                            backgroundColor: c => c.raw >= normVal ? '#10B981' : '#EF4444',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { display: true },
+                        y: {
+                            beginAtZero: true,
+                            display: true,
+                            max: yAxisMax, // [ĐÃ CẬP NHẬT] Set Max Value
+                            ticks: { callback: function (value) { return value + "%" } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: v => v.toFixed(2) + '%'
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+    <script>
+        async function downloadAsImage() {
+            const btn = document.getElementById('download-btn') || document.querySelector('.btn-download');
+            if (!btn) return;
+
+            let originalLabel = "";
+            let labelElement = null;
+            let originalHtml = "";
+
+            if (btn.id === 'download-btn') {
+                labelElement = btn.querySelector('.btn-label') || btn; // fallback
+                originalLabel = labelElement ? labelElement.textContent : btn.textContent;
+                btn.classList.add('loading');
+                btn.disabled = true;
+                if (labelElement) labelElement.textContent = 'Đang xử lý...';
+            } else {
+                originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+                btn.style.opacity = '0.7';
+                btn.style.pointerEvents = 'none';
+            }
+
+            // Tạm dừng animation của Chart để đảm bảo vẽ hoàn tất
+            Chart.defaults.animation = false;
+            for (let id in Chart.instances) {
+                Chart.instances[id].update();
+            }
+
+            // Đợi toàn bộ font tải xong
+            await document.fonts.ready;
+
+            const container = document.getElementById('report-container');
+            container.classList.add('ppt-export-mode'); // Kích hoạt CSS ngang 16:9
+
+            const truncateEls = container.querySelectorAll('.truncate');
+            truncateEls.forEach(el => {
+                el.classList.remove('truncate');
+                el.classList.remove('w-2/3');
+            });
+
+            window.scrollTo(0, 0);
+            await new Promise(r => setTimeout(r, 400)); // Đợi render dài ra xíu
+
+            try {
+                const canvas = await html2canvas(container, {
+                    scale: 3,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: '#F8FAFC',
+                    windowWidth: 2560,
+                    windowHeight: container.scrollHeight + 100, // Đề phòng dính tràn footer
+                    imageTimeout: 15000,
+                    onclone: (clonedDoc) => {
+                        const dlBtn = clonedDoc.getElementById('download-btn');
+                        if (dlBtn) dlBtn.style.display = 'none'; // Ẩn nút tải trên ảnh
+                    }
+                });
+
+                const link = document.createElement('a');
+                link.download = 'PNJ-Bao-Cao-Tong-Quan-Omni-T02.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch (err) {
+                console.error('Lỗi khi tải ảnh:', err);
+                alert('Đã có lỗi xảy ra khi tạo ảnh. Vui lòng thử lại!');
+            } finally {
+                container.classList.remove('ppt-export-mode');
+
+                if (typeof truncateEls !== 'undefined') {
+                    truncateEls.forEach(el => {
+                        el.classList.add('truncate');
+                        el.classList.add('w-2/3');
+                    });
+                }
+
+                // Khôi phục nút
+                if (btn.id === 'download-btn') {
+                    btn.classList.remove('loading');
+                    btn.disabled = false;
+                    if (labelElement) labelElement.textContent = originalLabel;
+                } else {
+                    btn.innerHTML = originalHtml;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
