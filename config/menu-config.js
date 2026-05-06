@@ -25,14 +25,6 @@ export const workspaceMenu = [
                     { name: 'Tháng 03/2026', url: '/modules/clienteling/monthly/2026/03/tong-quan.html', status: 'active' }
                 ]
             },
-            {
-                groupName: '30D Lookback',
-                features: [
-                    { name: 'Tháng 01/2026', url: '/modules/updating.html', status: 'coming-soon' },
-                    { name: 'Tháng 02/2026', url: '/modules/updating.html', status: 'coming-soon' }
-                ]
-            },
-            { groupName: 'Quarterly', features: [] },
             { groupName: 'Campaigns', features: [] }
         ]
     }
