@@ -18,7 +18,7 @@
         <span style="display:none; font-weight:900; font-size:16px; color:#002d72; letter-spacing:-.02em;">PNJ</span>
       </div>
       <div>
-        <p style="margin:0; font-size:14px; font-weight:800; color:#fff; letter-spacing:-.01em;">OMNI-GROWTH</p>
+        <p style="margin:0; font-size:14px; font-weight:800; color:#fff; letter-spacing:-.01em;">OMNI-GROWTH x CHI NHÁNH</p>
         <p style="margin:0; font-size:11px; color:#475569; font-weight:500;">Workspace Intelligence Platform</p>
       </div>
     </div>
