@@ -196,10 +196,6 @@ import { workspaceMenu } from '/config/menu-config.js';
 
         <div id="omni-cta" style="display:${isHome ? 'flex' : 'none'};gap:24px;flex:1;justify-content:center;">
             <!-- CTA links as per previous, simplifed for space -->
-            <a href="#customer-health" style="color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;">Customer Health</a>
-            <a href="#problem" style="color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;">Problem</a>
-            <a href="#solution" style="color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;">Solution</a>
-            <a href="#execution" style="color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;">Tracking</a>
         </div>
 
         <div style="display:flex;align-items:center;gap:12px;position:relative;">
