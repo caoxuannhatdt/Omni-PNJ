@@ -95,7 +95,7 @@
         if (document.getElementById('omni-footer')) return;
         const footer = document.createElement('footer');
         footer.id = 'omni-footer';
-        footer.style.cssText = 'background:#020617;padding:40px 20px;text-align:center;';
+        footer.style.cssText = 'background:#020617;padding:24px 20px;text-align:center;';
         footer.innerHTML = `
             <img src="/Logo.png" alt="PNJ"
                 style="height:36px;background:#fff;padding:5px 10px;border-radius:8px;display:block;margin:0 auto 14px;box-shadow:0 2px 8px rgba(0,0,0,.2);"
