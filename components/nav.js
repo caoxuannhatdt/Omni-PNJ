@@ -231,7 +231,7 @@ import { workspaceMenu } from '/config/menu-config.js';
             <div class="empty-state">
                 <i class="fas fa-sync empty-icon fa-spin-pulse"></i>
                 <div class="empty-text">Dữ liệu đang được đồng bộ</div>
-                <a href="/modules/updating.html" class="btn-update">Xem thông tin hệ thống</a>
+                <a href="/updating.html" class="btn-update">Xem thông tin hệ thống</a>
             </div>
         `;
   }
