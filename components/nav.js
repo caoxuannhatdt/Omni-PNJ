@@ -191,7 +191,7 @@ import { workspaceMenu } from '/config/menu-config.js';
     <div style="max-width:1400px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
         <a href="/index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
             <img src="/Logo.png" alt="PNJ" style="height:36px;background:#fff;padding:4px 8px;border-radius:8px;border:1px solid #f1f5f9;box-shadow:0 2px 4px rgba(0,0,0,.05);" onerror="this.style.display='none'">
-            <span style="font-size:12px;font-weight:900;letter-spacing:1px;color:${PNJ_BLUE};text-transform:uppercase;">OMNI-GROWTH</span>
+            <span style="font-size:12px;font-weight:900;letter-spacing:1px;color:${PNJ_BLUE};text-transform:uppercase;">OMNI-GROWTH x CHI NHÁNH</span>
         </a>
 
         <div id="omni-cta" style="display:${isHome ? 'flex' : 'none'};gap:24px;flex:1;justify-content:center;">
