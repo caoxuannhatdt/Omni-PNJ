@@ -447,6 +447,18 @@
                 zoom: 1.25;
             }
         }
+        
+        /* Auto scale-down for laptops and small height screens to prevent scrolling */
+        @media (max-width: 1440px), (max-height: 850px) {
+            .cjm-wrapper {
+                zoom: 0.85;
+            }
+        }
+        @media (max-width: 1280px), (max-height: 700px) {
+            .cjm-wrapper {
+                zoom: 0.75;
+            }
+        }
     </style>
 </head>
 
