@@ -22,7 +22,8 @@ export const workspaceMenu = [
                 features: [
                     { name: 'Tháng 01/2026', url: '/clienteling/monthly/2026/01/tong-quan.html', status: 'active' },
                     { name: 'Tháng 02/2026', url: '/clienteling/monthly/2026/02/tong-quan.html', status: 'active' },
-                    { name: 'Tháng 03/2026', url: '/clienteling/monthly/2026/03/tong-quan.html', status: 'active' }
+                    { name: 'Tháng 03/2026', url: '/clienteling/monthly/2026/03/tong-quan.html', status: 'active' },
+                    { name: 'Tháng 04/2026', url: '/clienteling/monthly/2026/04/tong-quan.html', status: 'active' }
                 ]
             },
             { groupName: 'Campaigns', features: [] }
